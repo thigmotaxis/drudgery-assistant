@@ -68,6 +68,11 @@ table {
 
 /* END HEADER STYLES */
 
+.content {
+  display: flex;
+  width: 100vw;
+}
+
 /* BEGIN SIDEBAR STYLES */
 
 .sideBar {
@@ -109,3 +114,45 @@ table {
 }
 
 /* END SIDEBAR STYLES */
+
+/* START MAIN CONTENT STYLES */
+
+.toDos {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+}
+
+.title {
+  font-size: 2rem;
+  text-align: center;
+  padding: 5%;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: 5% 10% 75% 5% 5%;
+  margin-bottom: 10px;
+  border: 4px solid black;
+
+}
+
+.radio, .dueDate, .editIcon, .deleteIcon {
+  place-self: center;
+}
+
+.taskName, .taskDescription {
+  align-self: center;
+}
+
+.editIcon, .deleteIcon {
+  height: 3rem;
+}
+
+.taskDescription {
+  grid-column: 3/4;
+}
+
+/* END MAIN CONTENT STYLES */
