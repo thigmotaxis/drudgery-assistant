@@ -14,7 +14,6 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
-	border: 0;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
@@ -46,11 +45,16 @@ table {
 
 * {
   box-sizing: border-box;
+  /* border: 1px solid red; */
 }
+
+/* BEGIN HEADER STYLES */
 
 .headerBar {
   display: flex;
   align-items: center;
+  height: 15vh;
+  border-bottom: 1px solid black;
 }
 
 .logo {
@@ -61,3 +65,47 @@ table {
 .headerText {
   font-size: 3rem;
 }
+
+/* END HEADER STYLES */
+
+/* BEGIN SIDEBAR STYLES */
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 85vh;
+  border-right: 1px solid black;
+}
+
+.dates {
+  padding-top: 10%;
+  height: 30%;
+}
+
+.home, .today, .thisWeek, .projects {
+  font-weight: bold;
+  padding-left: 10%;
+  padding-top: 8%;
+  padding-bottom: 8%;
+}
+
+.projects {
+  height: 40%;
+}
+
+.project {
+  font-weight: normal;
+  padding-left: 10%;
+  padding-top: 10%;
+  padding-bottom: 5%;
+}
+
+.addTask {
+  margin-top: 50%;
+  margin-left: 25%;
+  margin-bottom: 10%;
+  width: 50%;
+}
+
+/* END SIDEBAR STYLES */
