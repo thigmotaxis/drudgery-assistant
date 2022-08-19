@@ -1,3 +1,4 @@
-import renderPage from "./render.js"
+import "./style.css";
+import renderPage from "./render.js";
 
-renderPage()
+renderPage();
