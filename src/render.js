@@ -24,8 +24,8 @@ export default function renderPage() {
 
     const sideBar = createComponents("div", ["sideBar"], content);
 
-    const dateClasses = ["home", "today", "thisWeek"];
-    const dateText = ["Home", "Today", "This Week"];
+    const dateClasses = ["allTasks", "today", "thisWeek"];
+    const dateText = ["All Tasks", "Today", "This Week"];
     const dates = createComponents("div", ["dates"], sideBar);
 
     for (let i = 0; i < dateClasses.length; i++) {

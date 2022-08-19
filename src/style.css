@@ -88,7 +88,7 @@ table {
   height: 30%;
 }
 
-.home, .today, .thisWeek, .projects {
+.allTasks, .today, .thisWeek, .projects {
   font-weight: bold;
   padding-left: 10%;
   padding-top: 8%;
