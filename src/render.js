@@ -1,7 +1,7 @@
 import createComponents from "./createComponents.js";
 import logoPH from "./images/logoPH.jpg";
 
-export default function renderPage() {
+export const renderPage = (() => {
 
   const body = document.querySelector("body");
 
@@ -56,4 +56,4 @@ export default function renderPage() {
     const title = createComponents("div", ["title"], toDos);
     title.innerHTML = "Unfinished Business";
   })();
-};
+})();
