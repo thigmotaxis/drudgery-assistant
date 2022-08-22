@@ -1,3 +1,3 @@
-export const taskFactory = (dueDate, title, description) => {
-    return {dueDate, title, description};
+export const taskFactory = (dueDate, taskName, description) => {
+    return {dueDate, taskName, description};
 };
