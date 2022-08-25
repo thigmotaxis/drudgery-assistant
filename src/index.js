@@ -1,11 +1,19 @@
 import "./style.css";
-import renderPage from "./render.js";
+import {renderPage, modifyDOM} from "./render.js";
 import {taskFactory} from "./taskFactory.js";
-import {receiveTask} from "./taskStorage.js"
+import {storage} from "./taskStorage.js";
 
-renderPage();
-const obj = taskFactory("12/19/2022", "Birthday Party", "Make Abe feel uncomfortable by giving him a lot of attention");
-const obj2 = taskFactory("10/12/2022", "Birthday Party", "Say HBD to Alex");
-const test = receiveTask(obj);
-const test2 = receiveTask(obj2)
-console.log(test);
+
+
+
+// EVERYTHING BELOW HERE R/T TASK CREATION AND STORAGE WILL EVENTUALLY BE CALLED BY EVENTHANDLERS CREATED BY THE HANDLER MODULE
+const obj = taskFactory("12/19/22", "Birthday Party", "Make Abe feel uncomfortable by giving him a lot of attention");
+storage.storeTask(obj)
+const obj2 = taskFactory("10/12/22", "Birthday Party", "Say HBD to Alex");
+storage.storeTask(obj2)
+modifyDOM.renderTasks()
+
+const test = document.querySelector(".logo")
+test.addEventListener("click", () => {
+  modifyDOM.clearTasks()
+})
