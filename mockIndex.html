@@ -16,7 +16,7 @@
   <div class="content">
     <div class="sideBar">
       <div class="dates">
-        <div class="home">Home</div>
+        <div class="allTasks">All Tasks</div>
         <div class="today">Today</div>
         <div class="thisWeek">This Week</div>
       </div>
@@ -64,6 +64,26 @@
         <div class="taskName">Plan TRT resupplies</div>
         <img src="./src/images/editPH.jpg" alt="oh just an avocado placeholder image" class="editIcon"></img>
         <img src="./src/images/deletePH.jpg" alt="oh just an avocado placeholder image" class="deleteIcon">
+      </div>
+
+      <div class="formContainer">
+
+        <div class="inputGroup">
+          <label for="ntName">Task Name:</label>
+          <input type="text" id="ntName">
+        </div>
+
+        <div class="inputGroup">
+          <label for="ntDueDate">Due Date:</label>
+          <input type="date" id="ntDueDate">
+        </div>
+
+        <div class="inputGroup">
+          <label for="ntDesc">Task Description:</label>
+          <textarea id="ntDesc" rows="2" cols="80"></textarea>
+        </div>
+
+        <button class="submitNewTask">Add Task</button>
       </div>
 
     </div>
