@@ -2,6 +2,7 @@ export const storage = (() => {
   const taskList = [];
   const storeTask = (obj) => {
     taskList.push(obj)
+// SET dataIndex PROPERTY SO INDIVIDUAL TASKS CAN BE REFERENCED ELSEWHERE
     for (let i = 0; i < taskList.length; i++) {
       taskList[i].dataIndex = i;
     }

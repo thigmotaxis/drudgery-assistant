@@ -77,11 +77,12 @@ export const modifyDOM = (() => {
     };
   };
 
+// REFACTOR renderTasks() SO IT TAKES storage.getTaskList() AS A PARAMETER
   const renderTasks = () => {
     const taskList = storage.getTaskList();  // retrieves taskList so the loop can populate DOM elements with task object properties
-
     for (let i = 0; i < taskList.length; i++){
       const taskElement = createElement("div", ["task"], tasksParent);
+      taskElement.setAttribute("data-index", taskList[i].dataIndex);
 
       const radio = createElement("input", ["completeTask"], taskElement);
       radio.setAttribute("type", "radio");
