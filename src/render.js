@@ -5,6 +5,8 @@ import editPH from "./images/editPH.jpg";
 import deletePH from "./images/deletePH.jpg";
 import {handlers} from "./eventHandlers.js";
 
+// BEGIN RENDERING OF STATIC ELEMENTS
+
 export const renderPage = (() => {
 
   const body = document.querySelector("body");
@@ -60,21 +62,9 @@ export const renderPage = (() => {
     title.innerHTML = "Unfinished Business";
   })();
 
-// CREATE REFERENCE TO THE PARENT OF OUR TASK ELEMENTS
-  const tasksParent = document.querySelector(".toDos");
-
-// ADD LOGIC TO CREATE NEW TASK FORM ELEMENTS
-  const renderTaskForm = () => {
-    console.log("PLACEHOLDER FUNCTION TO RENDER NEW TASK FORM")
-  };
-
-  const createNewTaskListener = (() => {
-    const addTaskBtn = document.querySelector(".addTask")
-    addTaskBtn.addEventListener("click", renderTaskForm)
-  })();
-
-  return {tasksParent}
 })();
+
+// END RENDERING OF STATIC ELEMENTS
 
 export const modifyDOM = (() => {
 
@@ -115,6 +105,36 @@ export const modifyDOM = (() => {
       taskElement.appendChild(deleteIcon);
     };
   };
+
+  // ADD LOGIC TO CREATE NEW TASK FORM ELEMENTS
+    const renderTaskForm = () => {
+      clearTasks();
+      const formContainer = createElement("div", ["formContainer"], tasksParent)
+
+      const formTags = ["input", "input", "textarea"];
+      const formLabels = ["Task Name:", "Due Date:", "Task Description:"];
+      const formIds = ["ntName", "ntDueDate", "ntDesc"];
+      for (let i = 0; i < 3; i++) {
+        const inputGroup = createElement("div", ["inputGroup"], formContainer);
+        const label = createElement("label", ["formLabel"], inputGroup);
+        label.innerHTML = formLabels[i];
+        label.setAttribute("for", formIds[i]);
+
+        const input = createElement(formTags[i], ["formInput"], inputGroup);
+        input.setAttribute("id", formIds[i]);
+        if (i === 1) input.setAttribute("type", "date");
+      };
+
+      const formButton = createElement("button", ["submitNewTask"], formContainer);
+      formButton.innerHTML = "Add Task"
+    };
+
+    const createNewTaskListener = (() => {
+      const addTaskBtn = document.querySelector(".addTask")
+      addTaskBtn.addEventListener("click", renderTaskForm)
+
+
+    })();
 
   return {clearTasks, renderTasks}
 
