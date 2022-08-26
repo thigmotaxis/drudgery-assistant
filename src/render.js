@@ -3,7 +3,7 @@ import createElement from "./createComponents.js";
 import logoPH from "./images/logoPH.jpg";
 import editPH from "./images/editPH.jpg";
 import deletePH from "./images/deletePH.jpg";
-import {handlers} from "./eventHandlers.js";
+import {taskFactory} from "./taskFactory.js";
 
 // BEGIN RENDERING OF STATIC ELEMENTS
 
@@ -106,6 +106,36 @@ export const modifyDOM = (() => {
     };
   };
 
+  // LOGIC TO SUBMIT NEW TASK FORM
+  const storeFormValues = () => {
+    const dueDate = document.getElementById("ntDueDate").value;
+    const taskName = document.getElementById("ntName").value;
+    const description = document.getElementById("ntDesc").value;
+    // CONFIRMS ALL FORM ELEMENTS HAVE VALUES
+    if (!dueDate || !taskName || !description) {
+      alert("Please complete the form before submitting a new task");
+      return
+    };
+    const taskObject = taskFactory(dueDate, taskName, description);
+    return taskObject;
+  };
+
+  const handleNewTaskSubmission = () => {
+// CREATES AND STORES NEW OBJECT
+    const taskObject = storeFormValues();
+    if (!taskObject) return;
+    storage.storeTask(taskObject);
+// REMOVES FORM ELEMENTS AND LISTENER
+    const formButton = document.querySelector(".submitNewTask")
+    formButton.removeEventListener("click", handleNewTaskSubmission);
+
+    const form = document.querySelector(".formContainer");
+    tasksParent.removeChild(form);
+// REFRESHES DISPLAYED TASKLIST
+    clearTasks();
+    renderTasks();
+  };
+
   // ADD LOGIC TO CREATE NEW TASK FORM ELEMENTS
     const renderTaskForm = () => {
       clearTasks();
@@ -127,13 +157,12 @@ export const modifyDOM = (() => {
 
       const formButton = createElement("button", ["submitNewTask"], formContainer);
       formButton.innerHTML = "Add Task"
+      formButton.addEventListener("click", handleNewTaskSubmission);
     };
 
     const createNewTaskListener = (() => {
       const addTaskBtn = document.querySelector(".addTask")
       addTaskBtn.addEventListener("click", renderTaskForm)
-
-
     })();
 
   return {clearTasks, renderTasks}
