@@ -77,11 +77,9 @@ export const modifyDOM = (() => {
     };
   };
 
-  const createDeleteTaskListener = (taskElement) => {
-    taskElement.addEventListener("click", (e) => {
+  const deleteTask = (e) => {
       const taskToDelete = e.target.parentElement;
       taskToDelete.remove();
-    });
   };
 
 // REFACTOR renderTasks() SO IT TAKES storage.getTaskList() AS A PARAMETER
@@ -110,7 +108,7 @@ export const modifyDOM = (() => {
       deleteIcon.classList.add("deleteIcon");
       deleteIcon.setAttribute("src", deletePH);
       deleteIcon.setAttribute("alt", "oh just an avocado placeholder");
-      createDeleteTaskListener(deleteIcon);
+      deleteIcon.addEventListener("click", deleteTask), {once: true};
       taskElement.appendChild(deleteIcon);
     };
   };
@@ -169,10 +167,9 @@ export const modifyDOM = (() => {
       formButton.addEventListener("click", handleNewTaskSubmission);
     };
 
-    const createNewTaskListener = (() => {
-      const addTaskBtn = document.querySelector(".addTask")
-      addTaskBtn.addEventListener("click", renderTaskForm)
-    })();
+    const addTaskBtn = document.querySelector(".addTask")
+    addTaskBtn.addEventListener("click", renderTaskForm);
+  // END NEW TASK FORM LOGIC
 
   return {clearTasks, renderTasks}
 
