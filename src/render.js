@@ -77,6 +77,13 @@ export const modifyDOM = (() => {
     };
   };
 
+  const createDeleteTaskListener = (taskElement) => {
+    taskElement.addEventListener("click", (e) => {
+      const taskToDelete = e.target.parentElement;
+      taskToDelete.remove();
+    });
+  };
+
 // REFACTOR renderTasks() SO IT TAKES storage.getTaskList() AS A PARAMETER
   const renderTasks = () => {
     const taskList = storage.getTaskList();  // retrieves taskList so the loop can populate DOM elements with task object properties
@@ -103,6 +110,7 @@ export const modifyDOM = (() => {
       deleteIcon.classList.add("deleteIcon");
       deleteIcon.setAttribute("src", deletePH);
       deleteIcon.setAttribute("alt", "oh just an avocado placeholder");
+      createDeleteTaskListener(deleteIcon);
       taskElement.appendChild(deleteIcon);
     };
   };
