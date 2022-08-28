@@ -77,9 +77,10 @@ export const modifyDOM = (() => {
     };
   };
 
-  const deleteTask = (e) => {
+  const removeTask = (e) => {
       const taskToDelete = e.target.parentElement;
-      taskToDelete.remove();
+      storage.removeTask(taskToDelete);  // removes task object from taskList array
+      taskToDelete.remove();             // removes task element from the DOM
   };
 
 // REFACTOR renderTasks() SO IT TAKES storage.getTaskList() AS A PARAMETER
@@ -108,7 +109,7 @@ export const modifyDOM = (() => {
       deleteIcon.classList.add("deleteIcon");
       deleteIcon.setAttribute("src", deletePH);
       deleteIcon.setAttribute("alt", "oh just an avocado placeholder");
-      deleteIcon.addEventListener("click", deleteTask), {once: true};
+      deleteIcon.addEventListener("click", removeTask), {once: true};
       taskElement.appendChild(deleteIcon);
     };
   };

@@ -7,11 +7,15 @@ export const storage = (() => {
       taskList[i].dataIndex = i;
     }
   };
+  const removeTask = (taskToDelete) => {
+    const index = taskToDelete.getAttribute("data-index");
+    taskList.splice(index, 1);
+  };
   const getTaskList = () => {
     return taskList;
   };
   const sortTaskList = (category) => {
     // THIS FUNCTION WILL SORT TASK LIST BASED ON THE SPECIFIED CATEGORY (e.g. DATE OR PROJECT), WILL LIKELY HAVE TO REWORK getTaskList
   };
-  return {storeTask, getTaskList}
+  return {storeTask, removeTask, getTaskList}
 })();
