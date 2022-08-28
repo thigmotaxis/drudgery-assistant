@@ -9,18 +9,13 @@ export const storage = (() => {
     }
   };
 
-  const removeTask = (taskToDelete) => {
-    const domIndex = parseInt(taskToDelete.getAttribute("data-index"));
+  const removeTask = (taskToDelete, domIndex) => {
     const taskList = getTaskList();
-    console.log(taskList)
-    for (let i = 0; i < taskList.length; i++) {
-      const objectDataIndex = taskList[i].dataIndex
-      if (domIndex === objectDataIndex) {
-        taskList.splice(taskList.indexOf(taskList[i]), 1);
-        return;
-      };
-    };
+    const doesMatch = (item) => item.dataIndex === domIndex;
+    const objectDataIndex = taskList.findIndex(doesMatch);
+    taskList.splice(objectDataIndex, 1);
   };
+
   const getTaskList = () => {
     return taskList;
   };
