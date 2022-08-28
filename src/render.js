@@ -79,7 +79,8 @@ export const modifyDOM = (() => {
 
   const removeTask = (e) => {
       const taskToDelete = e.target.parentElement;
-      storage.removeTask(taskToDelete);  // removes task object from taskList array
+      const dataIndex = taskToDelete.getAttribute("data-index");
+      storage.removeTask(taskToDelete, dataIndex);  // removes task object from taskList array
       taskToDelete.remove();             // removes task element from the DOM
   };
 

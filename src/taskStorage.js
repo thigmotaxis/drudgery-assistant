@@ -1,5 +1,6 @@
 export const storage = (() => {
   const taskList = [];
+
   const storeTask = (obj) => {
     taskList.push(obj)
 // SET dataIndex PROPERTY SO INDIVIDUAL TASKS CAN BE REFERENCED ELSEWHERE
@@ -7,10 +8,14 @@ export const storage = (() => {
       taskList[i].dataIndex = i;
     }
   };
-  const removeTask = (taskToDelete) => {
-    const index = taskToDelete.getAttribute("data-index");
-    taskList.splice(index, 1);
+
+  const removeTask = (taskToDelete, domIndex) => {
+    const taskList = getTaskList();
+    const doesMatch = (item) => item.dataIndex === domIndex;
+    const objectDataIndex = taskList.findIndex(doesMatch);
+    taskList.splice(objectDataIndex, 1);
   };
+
   const getTaskList = () => {
     return taskList;
   };
