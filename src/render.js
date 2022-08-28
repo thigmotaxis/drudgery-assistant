@@ -83,6 +83,13 @@ export const modifyDOM = (() => {
       taskToDelete.remove();             // removes task element from the DOM
   };
 
+  const toggleTaskComplete = (e) => {
+    const radioButton = e.target;
+    const task = radioButton.parentElement;
+    const checked = task.classList.toggle("complete");
+    if (checked !== true) radioButton.checked = false;
+  };
+
 // REFACTOR renderTasks() SO IT TAKES storage.getTaskList() AS A PARAMETER
   const renderTasks = () => {
     const taskList = storage.getTaskList();  // retrieves taskList so the loop can populate DOM elements with task object properties
@@ -92,6 +99,7 @@ export const modifyDOM = (() => {
 
       const radio = createElement("input", ["completeTask"], taskElement);
       radio.setAttribute("type", "radio");
+      radio.addEventListener("click", toggleTaskComplete)
 
       const dueDate = createElement("div", ["dueDate"], taskElement);
       dueDate.innerHTML = taskList[i].dueDate;
