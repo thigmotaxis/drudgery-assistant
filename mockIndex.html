@@ -79,9 +79,19 @@
         </div>
 
         <div class="inputGroup">
+          <label for="ntPriority">Priority:</label>
+          <select name="ntPriority" id="ntPriority" autocomplete="off">
+            <option value="high">High</option>
+            <option value="normal" selected>Normal</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+
+        <div class="inputGroup">
           <label for="ntDesc">Task Description:</label>
           <textarea id="ntDesc" rows="2" cols="80"></textarea>
         </div>
+
 
         <button class="submitNewTask">Add Task</button>
       </div>

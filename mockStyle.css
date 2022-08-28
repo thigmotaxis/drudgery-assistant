@@ -176,7 +176,7 @@ table {
 	height: 5vh;
 }
 
-.formContainer input, textarea {
+.formContainer input, textarea, select {
 	width: 100%;
 }
 
