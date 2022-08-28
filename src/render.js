@@ -3,7 +3,6 @@ import createElement from "./createComponents.js";
 import logoPH from "./images/logoPH.jpg";
 import editPH from "./images/editPH.jpg";
 import deletePH from "./images/deletePH.jpg";
-import {taskFactory} from "./taskFactory.js";
 
 // BEGIN RENDERING OF STATIC ELEMENTS
 
@@ -133,7 +132,7 @@ export const modifyDOM = (() => {
       alert("Please complete the form before submitting a new task");
       return
     };
-    const taskObject = taskFactory(dueDate, taskName, description);
+    const taskObject = storage.taskFactory(dueDate, taskName, description);
     return taskObject;
   };
 

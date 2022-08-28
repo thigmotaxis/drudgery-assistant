@@ -1,4 +1,10 @@
 export const storage = (() => {
+  const taskFactory = (dueDate, taskName, description) => {
+    const dataIndex = undefined;
+    const priority = undefined;
+    return {dueDate, taskName, description, dataIndex};
+  };
+
   const taskList = [];
 
   const storeTask = (obj) => {
@@ -11,8 +17,7 @@ export const storage = (() => {
 
   const removeTask = (taskToDelete, domIndex) => {
     const taskList = getTaskList();
-    const doesMatch = (item) => item.dataIndex === domIndex;
-    const objectDataIndex = taskList.findIndex(doesMatch);
+    const objectDataIndex = taskList.findIndex(task => task.dataIndex === domIndex);
     taskList.splice(objectDataIndex, 1);
   };
 
@@ -22,5 +27,5 @@ export const storage = (() => {
   const sortTaskList = (category) => {
     // THIS FUNCTION WILL SORT TASK LIST BASED ON THE SPECIFIED CATEGORY (e.g. DATE OR PROJECT), WILL LIKELY HAVE TO REWORK getTaskList
   };
-  return {storeTask, removeTask, getTaskList}
+  return {taskFactory, storeTask, removeTask, getTaskList}
 })();
