@@ -155,6 +155,12 @@ table {
   grid-column: 3/4;
 }
 
+.complete {
+	opacity: .5;
+	text-decoration: line-through;
+	border-color: gray;
+}
+
 .formContainer {
 	border: 4px solid black;
   padding: 2.5vh;
