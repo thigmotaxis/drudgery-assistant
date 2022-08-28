@@ -145,6 +145,7 @@ export const modifyDOM = (() => {
 
   // ADD LOGIC TO CREATE NEW TASK FORM ELEMENTS
     const renderTaskForm = () => {
+      if (document.querySelector(".formContainer")) return;  // prevents rendering of multiple forms
       clearTasks();
       const formContainer = createElement("div", ["formContainer"], tasksParent)
 
