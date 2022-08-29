@@ -96,6 +96,7 @@ export const modifyDOM = (() => {
     for (let i = 0; i < taskList.length; i++){
       const taskElement = createElement("div", ["task"], tasksParent);
       taskElement.setAttribute("data-index", taskList[i].dataIndex);
+      taskElement.classList.add(`${taskList[i].priority}Priority`)
 
       const radio = createElement("input", ["completeTask"], taskElement);
       radio.setAttribute("type", "radio");
@@ -126,13 +127,14 @@ export const modifyDOM = (() => {
   const storeFormValues = () => {
     const dueDate = document.getElementById("ntDueDate").value;
     const taskName = document.getElementById("ntName").value;
+    const priority = document.getElementById("ntPriority").value;
     const description = document.getElementById("ntDesc").value;
     // CONFIRMS ALL FORM ELEMENTS HAVE VALUES
     if (!dueDate || !taskName || !description) {
       alert("Please complete the form before submitting a new task");
       return
     };
-    const taskObject = storage.taskFactory(dueDate, taskName, description);
+    const taskObject = storage.taskFactory(dueDate, taskName, priority, description);
     return taskObject;
   };
 
@@ -158,10 +160,10 @@ export const modifyDOM = (() => {
       clearTasks();
       const formContainer = createElement("div", ["formContainer"], tasksParent)
 
-      const formTags = ["input", "input", "textarea"];
-      const formLabels = ["Task Name:", "Due Date:", "Task Description:"];
-      const formIds = ["ntName", "ntDueDate", "ntDesc"];
-      for (let i = 0; i < 3; i++) {
+      const formTags = ["input", "input", "select", "textarea"];
+      const formLabels = ["Task Name:", "Due Date:", "Priority:", "Task Description:"];
+      const formIds = ["ntName", "ntDueDate", "ntPriority", "ntDesc"];
+      for (let i = 0; i < 4; i++) {
         const inputGroup = createElement("div", ["inputGroup"], formContainer);
         const label = createElement("label", ["formLabel"], inputGroup);
         label.innerHTML = formLabels[i];
@@ -169,7 +171,18 @@ export const modifyDOM = (() => {
 
         const input = createElement(formTags[i], ["formInput"], inputGroup);
         input.setAttribute("id", formIds[i]);
-        if (i === 1) input.setAttribute("type", "date");
+        if (formIds[i] === "ntDueDate") input.setAttribute("type", "date");
+        if (formIds[i] === "ntPriority") {
+          const dropDownOptions = ["high", "normal"];
+          for (let i = 0; i < dropDownOptions.length; i ++) {
+            const option = createElement("option", ["option"], input);
+            option.setAttribute("value", dropDownOptions[i]);
+            option.innerHTML = dropDownOptions[i].slice(0, 1).toUpperCase() + dropDownOptions[i].slice(1);
+            if (dropDownOptions[i] === "normal") {
+              option.setAttribute("selected", "selected");
+            };
+          };
+        };
       };
 
       const formButton = createElement("button", ["submitNewTask"], formContainer);
