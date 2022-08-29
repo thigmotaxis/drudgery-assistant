@@ -79,6 +79,10 @@ export const modifyDOM = (() => {
   const removeTask = (e) => {
       const taskToDelete = e.target.parentElement;
       const dataIndex = taskToDelete.getAttribute("data-index");
+      taskToDelete.firstElementChild.removeEventListener("click", toggleTaskComplete)
+// *** AFTER IMPLEMENTING EDIT BUTTON FUNCTIONALITY, USE taskToDelete.childNodes TO REMOVE LISTENER
+// *** PROBABLY NEED TO REFACTOR SO THAT TASKS ARE NOT DELETED EVERY TIME renderTaskForm IS CALLED - OTHERWISE LISTENERS NEED TO BE REMOVED WHEN THEY ARE
+
       storage.removeTask(taskToDelete, dataIndex);  // removes task object from taskList array
       taskToDelete.remove();             // removes task element from the DOM
   };
