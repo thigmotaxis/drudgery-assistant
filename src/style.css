@@ -99,7 +99,7 @@ table {
   height: 40%;
 }
 
-.project {
+.professionalSort, .academicSort, .personalSort {
   font-weight: normal;
   padding-left: 10%;
   padding-top: 10%;
@@ -136,10 +136,7 @@ table {
   grid-template-columns: 5% 10% 75% 5% 5%;
   margin-bottom: 10px;
   border: 4px solid black;
-}
 
-.highPriority {
-	border-color: red;
 }
 
 .radio, .dueDate, .editIcon, .deleteIcon {

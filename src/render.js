@@ -40,11 +40,11 @@ export const renderPage = (() => {
     const projects = createElement("div", ["projects"], sideBar);
     projects.innerHTML = "Projects";
 
-    const projText = ["Professional", "Academic", "Personal"];
+    const projectClasses = ["professional", "academic", "personal"];
 
-    for (let i = 0; i < projText.length; i++) {
-      const element = createElement("div", ["project"], projects);
-      element.innerHTML = projText[i];
+    for (let i = 0; i < projectClasses.length; i++) {
+      const element = createElement("div", [`${projectClasses[i]}Sort`], projects);
+      element.innerHTML = projectClasses[i].slice(0, 1).toUpperCase() + projectClasses[i].slice(1);
     };
 
     const addProject = createElement("button", ["addProject"], projects);
