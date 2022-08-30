@@ -10,14 +10,14 @@ export const storage = (() => {
 
   const storeTask = (obj) => {
     taskList.push(obj)
-// SETS dataIndex PROPERTY SO INDIVIDUAL TASKS CAN BE REFERENCED ELSEWHERE
-    for (let i = 0; i < taskList.length; i++) {
-      taskList[i].dataIndex = i;
-    };
 // SORT TASKS CHRONOLOGICALLY
     const chronoTaskList = taskList.sort((previous, next) => previous.dueDate > next.dueDate ? 1 : -1);
     taskList = chronoTaskList;
+  // SETS dataIndex PROPERTY SO INDIVIDUAL TASKS CAN BE REFERENCED ELSEWHERE
+  for (let i = 0; i < taskList.length; i++) {
+    taskList[i].dataIndex = i;
   };
+};
 
   const toggleTaskComplete = (domIndex) => {
     const objectDataIndex = taskList.findIndex(task => task.dataIndex == domIndex);
