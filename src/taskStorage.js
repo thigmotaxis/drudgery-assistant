@@ -1,6 +1,6 @@
 export const storage = (() => {
   const taskFactory = (dueDate, taskName, priority, category, description,) => {
-    const dataIndex = undefined;
+    let dataIndex = undefined;
     let complete = false;
 
     return {dueDate, taskName, priority, category, description, dataIndex, complete};
@@ -13,11 +13,11 @@ export const storage = (() => {
 // SORT TASKS CHRONOLOGICALLY
     const chronoTaskList = taskList.sort((previous, next) => previous.dueDate > next.dueDate ? 1 : -1);
     taskList = chronoTaskList;
-  // SETS dataIndex PROPERTY SO INDIVIDUAL TASKS CAN BE REFERENCED ELSEWHERE
-  for (let i = 0; i < taskList.length; i++) {
-    taskList[i].dataIndex = i;
+// SETS dataIndex PROPERTY SO INDIVIDUAL TASKS CAN BE REFERENCED ELSEWHERE
+    for (let i = 0; i < taskList.length; i++) {
+      taskList[i].dataIndex = i;
+    };
   };
-};
 
   const toggleTaskComplete = (domIndex) => {
     const objectDataIndex = taskList.findIndex(task => task.dataIndex == domIndex);
@@ -26,7 +26,7 @@ export const storage = (() => {
   };
 
   const removeTask = (domIndex) => {
-    const objectDataIndex = taskList.findIndex(task => task.dataIndex === domIndex);
+    const objectDataIndex = taskList.findIndex(task => task.dataIndex === parseInt(domIndex));
     taskList.splice(objectDataIndex, 1);
   };
 

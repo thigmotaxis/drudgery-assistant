@@ -84,7 +84,7 @@ export const modifyDOM = (() => {
 // *** PROBABLY NEED TO REFACTOR SO THAT TASKS ARE NOT DELETED EVERY TIME renderTaskForm IS CALLED - OTHERWISE LISTENERS NEED TO BE REMOVED WHEN THEY ARE
       // - but I will need to delete tasks from the DOM when displaying tasks by category, so maybe I just need to remove and reapply listeners each time
       storage.removeTask(dataIndex);  // removes task object from taskList array
-      taskToDelete.remove();                        // removes task element from the DOM
+      taskToDelete.remove();          // removes task element from the DOM
   };
 
   const toggleTaskComplete = (e) => {
@@ -213,6 +213,7 @@ export const modifyDOM = (() => {
     addTaskBtn.addEventListener("click", renderTaskForm);
   // END NEW TASK FORM LOGIC
 
+
     const sortTasksByCategory = (e) => {
       const category = e.target.className;
       const sortedTaskList = storage.sortTasksByCategory(category)
@@ -221,6 +222,23 @@ export const modifyDOM = (() => {
     }
 
     const addSideBarHandlers = (() => {
+      const allTasks = document.querySelector(".allTasks")
+      allTasks.addEventListener("click", () => {
+        clearTasks()
+        renderTasks()
+      });
+      const today = document.querySelector(".today");
+      today.addEventListener("click", () => {
+        clearTasks()
+        console.log("add logic to filter taskList to return only tasks due today")
+      });
+      const thisWeek = document.querySelector(".thisWeek");
+      thisWeek.addEventListener("click", () => {
+        clearTasks();
+        console.log("add logic to filter taskList to return only tasks due this week");
+      });
+
+
       const projects = document.querySelectorAll(".projects div")
       projects.forEach((project) => {
         project.addEventListener("click", sortTasksByCategory)
