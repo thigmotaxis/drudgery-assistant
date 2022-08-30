@@ -6,14 +6,17 @@ export const storage = (() => {
     return {dueDate, taskName, priority, category, description, dataIndex, complete};
   };
 
-  const taskList = [];
+  let taskList = [];
 
   const storeTask = (obj) => {
     taskList.push(obj)
 // SETS dataIndex PROPERTY SO INDIVIDUAL TASKS CAN BE REFERENCED ELSEWHERE
     for (let i = 0; i < taskList.length; i++) {
       taskList[i].dataIndex = i;
-    }
+    };
+// SORT TASKS CHRONOLOGICALLY
+    const chronoTaskList = taskList.sort((previous, next) => previous.dueDate > next.dueDate ? 1 : -1);
+    taskList = chronoTaskList;
   };
 
   const toggleTaskComplete = (domIndex) => {
