@@ -102,11 +102,12 @@ export const modifyDOM = (() => {
     for (let i = 0; i < taskList.length; i++){
       const taskElement = createElement("div", ["task"], tasksParent);
       taskElement.setAttribute("data-index", taskList[i].dataIndex);
-      taskElement.classList.add(`${taskList[i].priority}Priority`)
+      taskElement.classList.add(`${taskList[i].priority}Priority`);
+      if (taskList[i].complete === true) taskElement.classList.add("complete");
 
       const radio = createElement("input", ["completeTask"], taskElement);
       radio.setAttribute("type", "radio");
-      radio.addEventListener("click", toggleTaskComplete)
+      radio.addEventListener("click", toggleTaskComplete);
 
       const dueDate = createElement("div", ["dueDate"], taskElement);
       dueDate.innerHTML = taskList[i].dueDate;
