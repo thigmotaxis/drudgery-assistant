@@ -215,6 +215,19 @@ export const modifyDOM = (() => {
     addTaskBtn.addEventListener("click", renderTaskForm);
   // END NEW TASK FORM LOGIC
 
+    const sortTasksByCategory = (e) => {
+      const category = e.target.className;
+      const sortedTaskList = storage.sortTasksByCategory(category)
+      console.log(sortedTaskList)
+    }
+
+    const addSideBarHandlers = (() => {
+      const projects = document.querySelectorAll(".projects div")
+      projects.forEach((project) => {
+        project.addEventListener("click", sortTasksByCategory)
+      });
+    })();
+
   return {clearTasks, renderTasks}
 
   // will need to add functions to remove single elements (with listener on deleteIcon) and functions to edit element display (taskStorage.js should also

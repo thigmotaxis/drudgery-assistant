@@ -14,5 +14,5 @@ modifyDOM.renderTasks()
 
 const test = document.querySelector(".logo")
 test.addEventListener("click", () => {
-  modifyDOM.clearTasks()
-})
+  modifyDOM.clearTasks();
+});
