@@ -96,9 +96,7 @@ export const modifyDOM = (() => {
     storage.toggleTaskComplete(dataIndex)
   };
 
-// REFACTOR renderTasks() SO IT TAKES storage.getTaskList() AS A PARAMETER
-  const renderTasks = () => {
-    const taskList = storage.getTaskList();  // retrieves taskList so the loop can populate DOM elements with task object properties
+  const renderTasks = (taskList = storage.getTaskList()) => {
     for (let i = 0; i < taskList.length; i++){
       const taskElement = createElement("div", ["task"], tasksParent);
       taskElement.setAttribute("data-index", taskList[i].dataIndex);
@@ -218,7 +216,8 @@ export const modifyDOM = (() => {
     const sortTasksByCategory = (e) => {
       const category = e.target.className;
       const sortedTaskList = storage.sortTasksByCategory(category)
-      console.log(sortedTaskList)
+      clearTasks()
+      renderTasks(sortedTaskList)
     }
 
     const addSideBarHandlers = (() => {
