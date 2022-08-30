@@ -82,16 +82,18 @@ export const modifyDOM = (() => {
       taskToDelete.firstElementChild.removeEventListener("click", toggleTaskComplete)
 // *** AFTER IMPLEMENTING EDIT BUTTON FUNCTIONALITY, USE taskToDelete.childNodes TO REMOVE LISTENER
 // *** PROBABLY NEED TO REFACTOR SO THAT TASKS ARE NOT DELETED EVERY TIME renderTaskForm IS CALLED - OTHERWISE LISTENERS NEED TO BE REMOVED WHEN THEY ARE
-
-      storage.removeTask(taskToDelete, dataIndex);  // removes task object from taskList array
-      taskToDelete.remove();             // removes task element from the DOM
+      // - but I will need to delete tasks from the DOM when displaying tasks by category, so maybe I just need to remove and reapply listeners each time
+      storage.removeTask(dataIndex);  // removes task object from taskList array
+      taskToDelete.remove();                        // removes task element from the DOM
   };
 
   const toggleTaskComplete = (e) => {
     const radioButton = e.target;
-    const task = radioButton.parentElement;
-    const checked = task.classList.toggle("complete");
+    const taskToToggle = radioButton.parentElement;
+    const checked = taskToToggle.classList.toggle("complete");
     if (checked !== true) radioButton.checked = false;
+    const dataIndex = parseInt(taskToToggle.getAttribute("data-index"));
+    storage.toggleTaskComplete(dataIndex)
   };
 
 // REFACTOR renderTasks() SO IT TAKES storage.getTaskList() AS A PARAMETER
