@@ -167,10 +167,10 @@ export const modifyDOM = (() => {
       clearTasks();
       const formContainer = createElement("div", ["formContainer"], tasksParent)
 
-      const formTags = ["input", "input", "select", "textarea"];
-      const formLabels = ["Task Name:", "Due Date:", "Priority:", "Task Description:"];
-      const formIds = ["ntName", "ntDueDate", "ntPriority", "ntDesc"];
-      for (let i = 0; i < 4; i++) {
+      const formTags = ["input", "input", "select", "select", "textarea"];
+      const formLabels = ["Task Name:", "Due Date:", "Priority:", "Category:", "Task Description:"];
+      const formIds = ["ntName", "ntDueDate", "ntPriority", "ntCategory", "ntDesc"];
+      for (let i = 0; i < 5; i++) {
         const inputGroup = createElement("div", ["inputGroup"], formContainer);
         const label = createElement("label", ["formLabel"], inputGroup);
         label.innerHTML = formLabels[i];
@@ -186,6 +186,17 @@ export const modifyDOM = (() => {
             option.setAttribute("value", dropDownOptions[i]);
             option.innerHTML = dropDownOptions[i].slice(0, 1).toUpperCase() + dropDownOptions[i].slice(1);
             if (dropDownOptions[i] === "normal") {
+              option.setAttribute("selected", "selected");
+            };
+          };
+        };
+        if (formIds[i] === "ntCategory") {
+          const dropDownOptions = ["Professional", "Academic", "Personal"];
+          for (let i = 0; i < dropDownOptions.length; i ++) {
+            const option = createElement("option", ["option"], input);
+            option.setAttribute("value", dropDownOptions[i]);
+            option.innerHTML = dropDownOptions[i].slice(0, 1).toUpperCase() + dropDownOptions[i].slice(1);
+            if (dropDownOptions[i] === "Personal") {
               option.setAttribute("selected", "selected");
             };
           };
