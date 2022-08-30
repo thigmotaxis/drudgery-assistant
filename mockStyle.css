@@ -139,6 +139,10 @@ table {
 
 }
 
+.highPriority {
+	border-color: red;
+}
+
 .radio, .dueDate, .editIcon, .deleteIcon {
   place-self: center;
 }
