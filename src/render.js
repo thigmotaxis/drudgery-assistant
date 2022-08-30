@@ -43,7 +43,7 @@ export const renderPage = (() => {
     const projectClasses = ["professional", "academic", "personal"];
 
     for (let i = 0; i < projectClasses.length; i++) {
-      const element = createElement("div", [`${projectClasses[i]}Sort`], projects);
+      const element = createElement("div", [projectClasses[i]], projects);
       element.innerHTML = projectClasses[i].slice(0, 1).toUpperCase() + projectClasses[i].slice(1);
     };
 
