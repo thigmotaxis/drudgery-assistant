@@ -131,6 +131,7 @@ export const modifyDOM = (() => {
   // LOGIC TO SUBMIT NEW TASK FORM
   const storeFormValues = () => {
     const dueDate = document.getElementById("ntDueDate").value;
+    console.log(typeof dueDate)
     const taskName = document.getElementById("ntName").value;
     const priority = document.getElementById("ntPriority").value;
     const category = document.getElementById("ntCategory").value
@@ -212,7 +213,12 @@ export const modifyDOM = (() => {
     const addTaskBtn = document.querySelector(".addTask")
     addTaskBtn.addEventListener("click", renderTaskForm);
   // END NEW TASK FORM LOGIC
-
+    const sortTasksByDate = (e) => {
+      const date = e.target.className;
+      const sortedTaskList = storage.sortTasksByDate(date);
+      clearTasks()
+      renderTasks(sortedTaskList)
+    };
 
     const sortTasksByCategory = (e) => {
       const category = e.target.className;
@@ -228,10 +234,8 @@ export const modifyDOM = (() => {
         renderTasks()
       });
       const today = document.querySelector(".today");
-      today.addEventListener("click", () => {
-        clearTasks()
-        console.log("add logic to filter taskList to return only tasks due today")
-      });
+      today.addEventListener("click", clearTasks);
+      today.addEventListener("click", sortTasksByDate);
       const thisWeek = document.querySelector(".thisWeek");
       thisWeek.addEventListener("click", () => {
         clearTasks();
