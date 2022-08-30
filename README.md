@@ -13,6 +13,8 @@ Challenges so far:
   - I solved this by setting a default value for the taskList parameter (in this case taskList = storage.getTaskList). Now renderTasks can be invoked to display sorted task lists, and it will default to the full task list if no argument is passed. I should start using default values more often!
 
 3) Adding task sorting features broke removeTask() because they change the dataIndex property of the sorted taskObjects without updating the corresponding DOM element's data-index attribute.
-  - possible solutions:
+  - Possible solutions:
     1) update the dom elements' data-index attributes when sorting
     2) don't change the dataIndex property
+  - Turns out I was wrong about this and the actual problem was that storage.removeTask was using strict equality to compare string and int values in its findIndex invocation. This caused findIndex to return -1, which meant that the next line always called Array.splice(-1, 1), causing it to remove the final taskObject rather than the object represented by the clicked DOM element.
+    - Some good debugging practice!
