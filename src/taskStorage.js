@@ -1,9 +1,9 @@
 export const storage = (() => {
-  const taskFactory = (dueDate, taskName, priority, description) => {
+  const taskFactory = (dueDate, taskName, priority, category, description,) => {
     const dataIndex = undefined;
     let complete = false;
 
-    return {dueDate, taskName, priority, description, dataIndex, complete};
+    return {dueDate, taskName, priority, category, description, dataIndex, complete};
   };
 
   const taskList = [];

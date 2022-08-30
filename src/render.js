@@ -135,13 +135,14 @@ export const modifyDOM = (() => {
     const dueDate = document.getElementById("ntDueDate").value;
     const taskName = document.getElementById("ntName").value;
     const priority = document.getElementById("ntPriority").value;
+    const category = document.getElementById("ntCategory").value
     const description = document.getElementById("ntDesc").value;
     // CONFIRMS ALL FORM ELEMENTS HAVE VALUES
     if (!dueDate || !taskName || !description) {
       alert("Please complete the form before submitting a new task");
       return
     };
-    const taskObject = storage.taskFactory(dueDate, taskName, priority, description);
+    const taskObject = storage.taskFactory(dueDate, taskName, priority, category, description);
     return taskObject;
   };
 
@@ -179,6 +180,7 @@ export const modifyDOM = (() => {
         const input = createElement(formTags[i], ["formInput"], inputGroup);
         input.setAttribute("id", formIds[i]);
         if (formIds[i] === "ntDueDate") input.setAttribute("type", "date");
+        // RENDER PRIORITY DROPDOWN
         if (formIds[i] === "ntPriority") {
           const dropDownOptions = ["high", "normal"];
           for (let i = 0; i < dropDownOptions.length; i ++) {
@@ -190,13 +192,14 @@ export const modifyDOM = (() => {
             };
           };
         };
+        // RENDER CATEGORY DROPDOWN
         if (formIds[i] === "ntCategory") {
-          const dropDownOptions = ["Professional", "Academic", "Personal"];
+          const dropDownOptions = ["professional", "academic", "personal"];
           for (let i = 0; i < dropDownOptions.length; i ++) {
             const option = createElement("option", ["option"], input);
             option.setAttribute("value", dropDownOptions[i]);
             option.innerHTML = dropDownOptions[i].slice(0, 1).toUpperCase() + dropDownOptions[i].slice(1);
-            if (dropDownOptions[i] === "Personal") {
+            if (dropDownOptions[i] === "personal") {
               option.setAttribute("selected", "selected");
             };
           };
