@@ -107,10 +107,20 @@ table {
 }
 
 .addTask {
-  margin-top: 50%;
-  margin-left: 25%;
-  margin-bottom: 10%;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-bottom: 40%;
   width: 50%;
+}
+
+.copyright {
+	padding-left: 10%;
+	padding-top: 15%;
+	display: flex;
+}
+
+.footerImage {
+	height: 1rem;
 }
 
 /* END SIDEBAR STYLES */
