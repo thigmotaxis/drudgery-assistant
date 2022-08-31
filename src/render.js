@@ -147,6 +147,7 @@ export const modifyDOM = (() => {
   };
 
   const renderTasks = (taskList = storage.getTaskList()) => {
+    if (document.querySelector(".formContainer")) return;
     for (let i = 0; i < taskList.length; i++){
       const taskElement = createElement("div", ["task"], tasksParent);
       taskElement.setAttribute("data-index", taskList[i].dataIndex);
