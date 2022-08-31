@@ -19,6 +19,11 @@ export const storage = (() => {
     };
   };
 
+  const retrieveTaskObject = (domIndex) => {
+    const objectDataIndex = taskList.findIndex(task => task.dataIndex == domIndex);
+    return taskList[objectDataIndex];
+  };
+
   const toggleTaskComplete = (domIndex) => {
     const objectDataIndex = taskList.findIndex(task => task.dataIndex == domIndex);
     if (taskList[objectDataIndex].complete !== true) {taskList[objectDataIndex].complete = true}
@@ -36,7 +41,7 @@ export const storage = (() => {
 
   const sortTasksByDate = (date) => {
     const today = new Date().toISOString().slice(0, 10);          // gets todays date and returns it in the same format as taskObject.dueDate.
-                                                                  // this will need to be updated once I dig into the date formatting library 
+                                                                  // this will need to be updated once I dig into the date formatting library
     if (date === "today") return taskList.filter(task => task.dueDate === today);
   };
 
@@ -45,5 +50,5 @@ export const storage = (() => {
     if (category === "academic") return taskList.filter(task => task.category === "academic")
     if (category === "personal") return taskList.filter(task => task.category === "personal")
   };
-  return {taskFactory, storeTask, toggleTaskComplete, removeTask, getTaskList, sortTasksByDate, sortTasksByCategory}
+  return {taskFactory, storeTask, retrieveTaskObject, toggleTaskComplete, removeTask, getTaskList, sortTasksByDate, sortTasksByCategory}
 })();

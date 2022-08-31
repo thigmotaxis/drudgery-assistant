@@ -6,9 +6,9 @@ import {storage} from "./taskStorage.js";
 
 
 // EVERYTHING BELOW HERE R/T TASK CREATION AND STORAGE WILL EVENTUALLY BE CALLED BY EVENTHANDLERS CREATED BY THE HANDLER MODULE
-const obj = storage.taskFactory("12/19/22", "Birthday Party", "normal", "academic", "Make Abe feel uncomfortable by giving him a lot of attention");
+const obj = storage.taskFactory("2022-12-19", "Birthday Party", "normal", "academic", "Make Abe feel uncomfortable by giving him a lot of attention");
 storage.storeTask(obj)
-const obj2 = storage.taskFactory("10/12/22", "Birthday Party", "normal", "personal", "Say HBD to Alex");
+const obj2 = storage.taskFactory("2022-10-12", "Birthday Party", "high", "personal", "Say HBD to Alex");
 storage.storeTask(obj2)
 modifyDOM.renderTasks()
 

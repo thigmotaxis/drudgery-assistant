@@ -95,6 +95,34 @@ export const modifyDOM = (() => {
       taskToDelete.remove();          // removes task element from the DOM
   };
 
+  const handleTaskEdit = (e) => {
+    renderTaskForm();
+    const domIndex = e.target.parentElement.getAttribute("data-index");
+    const objectToEdit = storage.retrieveTaskObject(domIndex);
+// READ OBJECT VALUES INTO FORM
+    document.getElementById("ntDueDate").value = objectToEdit.dueDate;
+    document.getElementById("ntName").value = objectToEdit.taskName;
+    document.getElementById("ntPriority").value = objectToEdit.priority;
+    document.getElementById("ntCategory").value = objectToEdit.category;
+    document.getElementById("ntDesc").value = objectToEdit.description;
+
+    const addTaskButton = document.querySelector(".submitNewTask");
+    addTaskButton.removeEventListener("click", handleNewTaskSubmission);
+// LISTENER PUSHES FORM VALUES TO OBJECT
+    addTaskButton.addEventListener("click", () => {
+      objectToEdit.dueDate = document.getElementById("ntDueDate").value;
+      objectToEdit.taskName = document.getElementById("ntName").value;
+      objectToEdit.priority = document.getElementById("ntPriority").value;
+      objectToEdit.category = document.getElementById("ntCategory").value;
+      objectToEdit.description = document.getElementById("ntDesc").value;
+    }), {once: true};
+    addTaskButton.addEventListener("click", () => {
+      const form = document.querySelector(".formContainer");
+      form.remove(), {once: true};
+    });
+    addTaskButton.addEventListener("click", () => renderTasks(storage.getTaskList())), {once: true};
+  };
+
   const toggleTaskComplete = (e) => {
     const radioButton = e.target;
     const taskToToggle = radioButton.parentElement;
@@ -105,17 +133,17 @@ export const modifyDOM = (() => {
   };
 
   const expandTask = (e) => {
-    const task = e.target;
-    const taskDescription = createElement("div", ["taskDescription"], task);
-    const domDataIndex = task.getAttribute("data-index")
+    const taskElement = e.target;
+    const taskDescription = createElement("div", ["taskDescription"], taskElement);
+    const domDataIndex = taskElement.getAttribute("data-index")
     const taskList = storage.getTaskList();
     const objectDataIndex = taskList.findIndex(task => task.dataIndex == domDataIndex);
     taskDescription.innerHTML = taskList[objectDataIndex].description;
   };
 
   const shrinkTask = (e) => {
-    const task = e.target;
-    task.lastChild.remove();
+    const taskElement = e.target;
+    taskElement.lastChild.remove();
   };
 
   const renderTasks = (taskList = storage.getTaskList()) => {
@@ -141,6 +169,7 @@ export const modifyDOM = (() => {
       editIcon.classList.add("editIcon");
       editIcon.setAttribute("src", editPH);
       editIcon.setAttribute("alt", "oh just an avocado placeholder");
+      editIcon.addEventListener("click", handleTaskEdit)
       taskElement.appendChild(editIcon);
 
       const deleteIcon = new Image();
