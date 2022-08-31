@@ -1,6 +1,7 @@
 import {storage} from "./taskStorage.js"
 import createElement from "./createComponents.js";
 import logoPH from "./images/logoPH.jpg";
+import copyrightSymbol from "./images/copyright.png";
 import editPH from "./images/editPH.jpg";
 import deletePH from "./images/deletePH.jpg";
 
@@ -47,12 +48,19 @@ export const renderPage = (() => {
       element.innerHTML = projectClasses[i].slice(0, 1).toUpperCase() + projectClasses[i].slice(1);
     };
 
-    const addProject = createElement("button", ["addProject"], projects);
-    addProject.innerHTML = "Add New Project";
-
     const addTask = createElement("button", ["addTask"], sideBar);
     addTask.innerHTML = "Add New Task";
+// RENDER FOOTER
+    const copyright = createElement("div", ["copyright"], sideBar)
+    const footerImage = new Image();
+    footerImage.classList.add("footerImage");
+    footerImage.setAttribute("src", copyrightSymbol);
+    footerImage.setAttribute("alt", "The copyright symbol");
+    copyright.appendChild(footerImage);
+    const footerText = createElement("div", ["footerText"], copyright)
+    footerText.innerHTML = "2022 Abe Industries";
   })();
+
 
 
   const renderToDos = (() =>{
@@ -131,7 +139,6 @@ export const modifyDOM = (() => {
   // LOGIC TO SUBMIT NEW TASK FORM
   const storeFormValues = () => {
     const dueDate = document.getElementById("ntDueDate").value;
-    console.log(typeof dueDate)
     const taskName = document.getElementById("ntName").value;
     const priority = document.getElementById("ntPriority").value;
     const category = document.getElementById("ntCategory").value
