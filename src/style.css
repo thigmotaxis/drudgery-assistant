@@ -117,6 +117,7 @@ table {
 	padding-left: 10%;
 	padding-top: 15%;
 	display: flex;
+	padding-bottom: 5%;
 }
 
 .footerImage {
@@ -159,6 +160,8 @@ table {
 
 .taskName, .taskDescription {
   align-self: center;
+	padding-top: 2%;
+	padding-bottom: 2%;
 }
 
 .editIcon, .deleteIcon {

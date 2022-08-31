@@ -104,11 +104,27 @@ export const modifyDOM = (() => {
     storage.toggleTaskComplete(dataIndex)
   };
 
+  const expandTask = (e) => {
+    const task = e.target;
+    const taskDescription = createElement("div", ["taskDescription"], task);
+    const domDataIndex = task.getAttribute("data-index")
+    const taskList = storage.getTaskList();
+    const objectDataIndex = taskList.findIndex(task => task.dataIndex == domDataIndex);
+    taskDescription.innerHTML = taskList[objectDataIndex].description;
+  };
+
+  const shrinkTask = (e) => {
+    const task = e.target;
+    task.lastChild.remove();
+  };
+
   const renderTasks = (taskList = storage.getTaskList()) => {
     for (let i = 0; i < taskList.length; i++){
       const taskElement = createElement("div", ["task"], tasksParent);
       taskElement.setAttribute("data-index", taskList[i].dataIndex);
       taskElement.classList.add(`${taskList[i].priority}Priority`);
+      taskElement.addEventListener("mouseenter", expandTask);
+      taskElement.addEventListener("mouseleave", shrinkTask);
       if (taskList[i].complete === true) taskElement.classList.add("complete");
 
       const radio = createElement("input", ["completeTask"], taskElement);
