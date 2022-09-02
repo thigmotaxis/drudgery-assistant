@@ -327,9 +327,4 @@ export const modifyDOM = (() => {
 
   return {clearTasks, renderTasks}
 
-  // will need to add functions to remove single elements (with listener on deleteIcon) and functions to edit element display (taskStorage.js should also
-  // have a function to edit the internal object properties)
-  // add task object property "expanded: t/f" then add render logic that (make an toggleDescDisplay fx?) shows a description element if expanded = true
-
-
 })();
