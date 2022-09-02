@@ -11,63 +11,101 @@ export const renderPage = (() => {
 
   const body = document.querySelector("body");
 
-  const renderHeader = (() =>{
-    const headerBar = createElement("div", ["headerBar"], body);
-    const logo = new Image();
-    logo.classList.add("logo");
-    logo.setAttribute("src", logoPH);
-    logo.setAttribute("alt", "oh just an avocado placeholder");
-    headerBar.appendChild(logo);
+  // NEED TO FIGURE OUT IF THE src ATTRIBUTE FOR MY IMAGE TAGS WILL BREAK WHEN DEPLOYED
 
-    const headerText = createElement("div", ["headerText"], headerBar);
-    headerText.innerHTML = "Drudgery Assistant";
-  })();
+  body.insertAdjacentHTML("afterbegin",
+  `<div class="headerBar">
+    <img src="file:///home/abe/repos/drudgery-assistant/dist/1a298f8658946c1d8f79.jpg" alt="oh just an avocado placeholder image" class="logo">
+    <div class="headerText">Drudgery Assistant</div>
+  </div>
+  `)
+  const header = document.querySelector(".headerBar")
 
-  const content = createElement("div", ["content"], body);
+  header.insertAdjacentHTML("afterend",
+  `<div class="content">
+    <div class="sideBar">
+      <div class="dates">
+        <div class="allTasks">All Tasks</div>
+        <div class="today">Today</div>
+        <div class="thisWeek">This Week</div>
+      </div>
+      <div class="projects">Projects
+        <div class="professional">Professional</div>
+        <div class="academic">Academic</div>
+        <div class="personal">Personal</div>
+        </div>
+      <button class="addTask">Add New Task</button>
 
-  const renderSideBar = (() => {
+      <div class="copyright">
+        <img class="footerImage" src="file:///home/abe/repos/drudgery-assistant/dist/784323dd6f14334269b7.png" alt="The copyright symbol">
+        <div class="footerText">2022 Abe Industries</div>
+      </div>
+    </div>
+  </div>`)
 
-    const sideBar = createElement("div", ["sideBar"], content);
+  const sideBar = document.querySelector(".sideBar")
+  sideBar.insertAdjacentHTML("afterend",
+  `<div class="toDos">
+    <div class="title">Unfinished Business</div>
+  </div>`)
 
-    const dateClasses = ["allTasks", "today", "thisWeek"];
-    const dateText = ["All Tasks", "Today", "This Week"];
-    const dates = createElement("div", ["dates"], sideBar);
+  // const renderHeader = (() =>{
+  //   const headerBar = createElement("div", ["headerBar"], body);
+  //   const logo = new Image();
+  //   logo.classList.add("logo");
+  //   logo.setAttribute("src", logoPH);
+  //   logo.setAttribute("alt", "oh just an avocado placeholder");
+  //   headerBar.appendChild(logo);
+  //
+  //   const headerText = createElement("div", ["headerText"], headerBar);
+  //   headerText.innerHTML = "Drudgery Assistant";
+  // })();
 
-    for (let i = 0; i < dateClasses.length; i++) {
-      const element = createElement("div", [dateClasses[i]], dates);
-      element.innerHTML = dateText[i];
-    };
+  // const content = createElement("div", ["content"], body);
 
-    const projects = createElement("div", ["projects"], sideBar);
-    projects.innerHTML = "Projects";
+//   const renderSideBar = (() => {
+//
+//     const sideBar = createElement("div", ["sideBar"], content);
+//
+//     const dateClasses = ["allTasks", "today", "thisWeek"];
+//     const dateText = ["All Tasks", "Today", "This Week"];
+//     const dates = createElement("div", ["dates"], sideBar);
+//
+//     for (let i = 0; i < dateClasses.length; i++) {
+//       const element = createElement("div", [dateClasses[i]], dates);
+//       element.innerHTML = dateText[i];
+//     };
+//
+//     const projects = createElement("div", ["projects"], sideBar);
+//     projects.innerHTML = "Projects";
+//
+//     const projectClasses = ["professional", "academic", "personal"];
+//
+//     for (let i = 0; i < projectClasses.length; i++) {
+//       const element = createElement("div", [projectClasses[i]], projects);
+//       element.innerHTML = projectClasses[i].slice(0, 1).toUpperCase() + projectClasses[i].slice(1);
+//     };
+//
+//     const addTask = createElement("button", ["addTask"], sideBar);
+//     addTask.innerHTML = "Add New Task";
+// // RENDER FOOTER
+//     const copyright = createElement("div", ["copyright"], sideBar)
+//     const footerImage = new Image();
+//     footerImage.classList.add("footerImage");
+//     footerImage.setAttribute("src", copyrightSymbol);
+//     footerImage.setAttribute("alt", "The copyright symbol");
+//     copyright.appendChild(footerImage);
+//     const footerText = createElement("div", ["footerText"], copyright)
+//     footerText.innerHTML = "2022 Abe Industries";
+//   })();
 
-    const projectClasses = ["professional", "academic", "personal"];
-
-    for (let i = 0; i < projectClasses.length; i++) {
-      const element = createElement("div", [projectClasses[i]], projects);
-      element.innerHTML = projectClasses[i].slice(0, 1).toUpperCase() + projectClasses[i].slice(1);
-    };
-
-    const addTask = createElement("button", ["addTask"], sideBar);
-    addTask.innerHTML = "Add New Task";
-// RENDER FOOTER
-    const copyright = createElement("div", ["copyright"], sideBar)
-    const footerImage = new Image();
-    footerImage.classList.add("footerImage");
-    footerImage.setAttribute("src", copyrightSymbol);
-    footerImage.setAttribute("alt", "The copyright symbol");
-    copyright.appendChild(footerImage);
-    const footerText = createElement("div", ["footerText"], copyright)
-    footerText.innerHTML = "2022 Abe Industries";
-  })();
 
 
-
-  const renderToDos = (() =>{
-    const toDos = createElement("div", ["toDos"], content);
-    const title = createElement("div", ["title"], toDos);
-    title.innerHTML = "Unfinished Business";
-  })();
+  // const renderToDos = (() =>{
+  //   const toDos = createElement("div", ["toDos"], content);
+  //   const title = createElement("div", ["title"], toDos);
+  //   title.innerHTML = "Unfinished Business";
+  // })();
 
 })();
 
@@ -148,38 +186,31 @@ export const modifyDOM = (() => {
 
   const renderTasks = (taskList = storage.getTaskList()) => {
     if (document.querySelector(".formContainer")) return;
+    const toDo = document.querySelector(".toDos")
     for (let i = 0; i < taskList.length; i++){
-      const taskElement = createElement("div", ["task"], tasksParent);
-      taskElement.setAttribute("data-index", taskList[i].dataIndex);
-      taskElement.classList.add(`${taskList[i].priority}Priority`);
-      taskElement.addEventListener("mouseenter", expandTask);
-      taskElement.addEventListener("mouseleave", shrinkTask);
-      if (taskList[i].complete === true) taskElement.classList.add("complete");
 
-      const radio = createElement("input", ["completeTask"], taskElement);
-      radio.setAttribute("type", "radio");
-      radio.addEventListener("click", toggleTaskComplete);
-
-      const dueDate = createElement("div", ["dueDate"], taskElement);
-      dueDate.innerHTML = taskList[i].dueDate;
-
-      const taskName = createElement("div", ["taskName"], taskElement);
-      taskName.innerHTML = taskList[i].taskName;
-
-      const editIcon = new Image();
-      editIcon.classList.add("editIcon");
-      editIcon.setAttribute("src", editPH);
-      editIcon.setAttribute("alt", "oh just an avocado placeholder");
-      editIcon.addEventListener("click", handleTaskEdit)
-      taskElement.appendChild(editIcon);
-
-      const deleteIcon = new Image();
-      deleteIcon.classList.add("deleteIcon");
-      deleteIcon.setAttribute("src", deletePH);
-      deleteIcon.setAttribute("alt", "oh just an avocado placeholder");
-      deleteIcon.addEventListener("click", removeTask), {once: true};
-      taskElement.appendChild(deleteIcon);
+      toDo.insertAdjacentHTML("beforeend",
+      `<div class="task ${taskList[i].priority}Priority" data-index="${taskList[i].dataIndex}">
+        <input class="completeTask" type="radio">
+        <div class="dueDate">${taskList[i].dueDate}</div>
+        <div class="taskName">${taskList[i].taskName}</div>
+        <img class="editIcon" src="file:///home/abe/repos/drudgery-assistant/dist/cf6da241771896690fb9.jpg" alt="oh just an avocado placeholder">
+        <img class="deleteIcon" src="file:///home/abe/repos/drudgery-assistant/dist/7491da0f585923c16e6c.jpg" alt="oh just an avocado placeholder">
+      </div>`)
     };
+    const test = document.querySelectorAll(".task").length
+    for (let i = 0; i < test; i++) {
+      const task = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`);
+      task.addEventListener("mouseenter", expandTask);
+      task.addEventListener("mouseleave", shrinkTask);
+      const radio = document.querySelector(`[data-index="${taskList[i].dataIndex}"] input`);
+      if (taskList[i].complete === true) task.classList.add("complete");
+      radio.addEventListener("click", toggleTaskComplete);
+      const editIcon = document.querySelector(`[data-index="${taskList[i].dataIndex}"] .editIcon`)
+      editIcon.addEventListener("click", handleTaskEdit)
+      const deleteIcon = document.querySelector(`[data-index="${taskList[i].dataIndex}"] .deleteIcon`)
+      deleteIcon.addEventListener("click", removeTask), {once: true};
+    }
   };
 
   // LOGIC TO SUBMIT NEW TASK FORM
@@ -218,48 +249,40 @@ export const modifyDOM = (() => {
     const renderTaskForm = () => {
       if (document.querySelector(".formContainer")) return;  // prevents rendering of multiple forms
       clearTasks();
-      const formContainer = createElement("div", ["formContainer"], tasksParent)
 
-      const formTags = ["input", "input", "select", "select", "textarea"];
-      const formLabels = ["Task Name:", "Due Date:", "Priority:", "Category:", "Task Description:"];
-      const formIds = ["ntName", "ntDueDate", "ntPriority", "ntCategory", "ntDesc"];
-      for (let i = 0; i < 5; i++) {
-        const inputGroup = createElement("div", ["inputGroup"], formContainer);
-        const label = createElement("label", ["formLabel"], inputGroup);
-        label.innerHTML = formLabels[i];
-        label.setAttribute("for", formIds[i]);
-
-        const input = createElement(formTags[i], ["formInput"], inputGroup);
-        input.setAttribute("id", formIds[i]);
-        if (formIds[i] === "ntDueDate") input.setAttribute("type", "date");
-        // RENDER PRIORITY DROPDOWN
-        if (formIds[i] === "ntPriority") {
-          const dropDownOptions = ["high", "normal"];
-          for (let i = 0; i < dropDownOptions.length; i ++) {
-            const option = createElement("option", ["option"], input);
-            option.setAttribute("value", dropDownOptions[i]);
-            option.innerHTML = dropDownOptions[i].slice(0, 1).toUpperCase() + dropDownOptions[i].slice(1);
-            if (dropDownOptions[i] === "normal") {
-              option.setAttribute("selected", "selected");
-            };
-          };
-        };
-        // RENDER CATEGORY DROPDOWN
-        if (formIds[i] === "ntCategory") {
-          const dropDownOptions = ["professional", "academic", "personal"];
-          for (let i = 0; i < dropDownOptions.length; i ++) {
-            const option = createElement("option", ["option"], input);
-            option.setAttribute("value", dropDownOptions[i]);
-            option.innerHTML = dropDownOptions[i].slice(0, 1).toUpperCase() + dropDownOptions[i].slice(1);
-            if (dropDownOptions[i] === "personal") {
-              option.setAttribute("selected", "selected");
-            };
-          };
-        };
-      };
-
-      const formButton = createElement("button", ["submitNewTask"], formContainer);
-      formButton.innerHTML = "Add Task"
+      const toDos = document.querySelector(".toDos")
+      toDos.insertAdjacentHTML("beforeend",
+      `<div class="formContainer">
+        <div class="inputGroup">
+          <label class="formLabel" for="ntName">Task Name:</label>
+          <input class="formInput" id="ntName">
+        </div>
+        <div class="inputGroup">
+          <label class="formLabel" for="ntDueDate">Due Date:</label>
+          <input class="formInput" id="ntDueDate" type="date">
+        </div>
+        <div class="inputGroup">
+        <label class="formLabel" for="ntPriority">Priority:</label>
+          <select class="formInput" id="ntPriority">
+            <option class="option" value="high">High</option>
+            <option class="option" value="normal" selected="selected">Normal</option>
+          </select>
+        </div>
+        <div class="inputGroup">
+          <label class="formLabel" for="ntCategory">Category:</label>
+          <select class="formInput" id="ntCategory">
+            <option class="option" value="professional">Professional</option>
+            <option class="option" value="academic">Academic</option>
+            <option class="option" value="personal" selected="selected">Personal</option>
+          </select>
+        </div>
+        <div class="inputGroup">
+          <label class="formLabel" for="ntDesc">Task Description:</label>
+          <textarea class="formInput" id="ntDesc"></textarea>
+        </div>
+          <button class="submitNewTask">Add Task</button>
+        </div>`)
+      const formButton = document.querySelector(".submitNewTask")
       formButton.addEventListener("click", handleNewTaskSubmission);
     };
 
