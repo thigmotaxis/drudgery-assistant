@@ -197,6 +197,8 @@ export const modifyDOM = (() => {
         <img class="editIcon" src="file:///home/abe/repos/drudgery-assistant/dist/cf6da241771896690fb9.jpg" alt="oh just an avocado placeholder">
         <img class="deleteIcon" src="file:///home/abe/repos/drudgery-assistant/dist/7491da0f585923c16e6c.jpg" alt="oh just an avocado placeholder">
       </div>`)
+      const radioButton = document.querySelector(`[data-index="${i}"] .completeTask`)
+      if (taskList[i].complete === true) radioButton.checked = true;
     };
     const test = document.querySelectorAll(".task").length
     for (let i = 0; i < test; i++) {
