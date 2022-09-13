@@ -117,6 +117,7 @@ table {
 	padding-left: 10%;
 	padding-top: 15%;
 	display: flex;
+	padding-bottom: 5%;
 }
 
 .footerImage {
@@ -159,6 +160,8 @@ table {
 
 .taskName, .taskDescription {
   align-self: center;
+	padding-top: 2%;
+	padding-bottom: 2%;
 }
 
 .editIcon, .deleteIcon {
@@ -195,13 +198,16 @@ table {
 }
 
 .submitNewTask {
-	height: 2.5vh;
   width: 15%;
 	margin-top: 1.25vh;
 	align-self: flex-end;
+}
+
+button {
+	height: 2.5vh;
 	border: 1px solid black;
-	border-radius: 15px;
 	background-color: cyan;
+	border-radius: 15px;
 }
 
 /* END MAIN CONTENT STYLES */
