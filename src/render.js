@@ -148,17 +148,13 @@ export const modifyDOM = (() => {
     addTaskButton.removeEventListener("click", handleNewTaskSubmission);
 // LISTENER PUSHES FORM VALUES TO OBJECT
     addTaskButton.addEventListener("click", () => {
-      objectToEdit.dueDate = document.getElementById("ntDueDate").value;
-      objectToEdit.taskName = document.getElementById("ntName").value;
-      objectToEdit.priority = document.getElementById("ntPriority").value;
-      objectToEdit.category = document.getElementById("ntCategory").value;
-      objectToEdit.description = document.getElementById("ntDesc").value;
+      storage.editTask(objectToEdit)
     }), {once: true};
     addTaskButton.addEventListener("click", () => {
       const form = document.querySelector(".formContainer");
       form.remove(), {once: true};
     });
-    addTaskButton.addEventListener("click", () => renderTasks(storage.getTaskList())), {once: true};
+    addTaskButton.addEventListener("click", () => renderTasks(storage.getTaskListFromSession())), {once: true};
   };
 
   const toggleTaskComplete = (e) => {
@@ -174,7 +170,7 @@ export const modifyDOM = (() => {
     const taskElement = e.target;
     const taskDescription = createElement("div", ["taskDescription"], taskElement);
     const domDataIndex = taskElement.getAttribute("data-index")
-    const taskList = storage.getTaskList();
+    const taskList = storage.getTaskListFromSession();
     const objectDataIndex = taskList.findIndex(task => task.dataIndex == domDataIndex);
     taskDescription.innerHTML = taskList[objectDataIndex].description;
   };
@@ -184,7 +180,7 @@ export const modifyDOM = (() => {
     taskElement.lastChild.remove();
   };
 
-  const renderTasks = (taskList = storage.getTaskList()) => {
+  const renderTasks = (taskList = storage.getTaskListFromSession()) => {
     if (document.querySelector(".formContainer")) return;
     const toDo = document.querySelector(".toDos")
     for (let i = 0; i < taskList.length; i++){
@@ -197,11 +193,11 @@ export const modifyDOM = (() => {
         <img class="editIcon" src="file:///home/abe/repos/drudgery-assistant/dist/cf6da241771896690fb9.jpg" alt="oh just an avocado placeholder">
         <img class="deleteIcon" src="file:///home/abe/repos/drudgery-assistant/dist/7491da0f585923c16e6c.jpg" alt="oh just an avocado placeholder">
       </div>`)
-      const radioButton = document.querySelector(`[data-index="${i}"] .completeTask`)
+      const radioButton = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`).firstElementChild
       if (taskList[i].complete === true) radioButton.checked = true;
     };
-    const test = document.querySelectorAll(".task").length
-    for (let i = 0; i < test; i++) {
+    const taskElements = document.querySelectorAll(".task").length
+    for (let i = 0; i < taskElements; i++) {
       const task = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`);
       task.addEventListener("mouseenter", expandTask);
       task.addEventListener("mouseleave", shrinkTask);

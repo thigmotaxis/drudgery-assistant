@@ -1,3 +1,5 @@
+import {renderPage} from "./render.js"
+
 export const storage = (() => {
   const taskFactory = (dueDate, taskName, priority, category, description,) => {
     let dataIndex = undefined;
@@ -6,7 +8,27 @@ export const storage = (() => {
     return {dueDate, taskName, priority, category, description, dataIndex, complete};
   };
 
+// RETRIEVE currentTaskList from SESSION STORAGE
+  const getTaskListFromSession = () => {
+    let currentTaskList = JSON.parse(window.sessionStorage.getItem("currentTaskList"));
+    if (!currentTaskList) return [];
+    return currentTaskList;
+  };
+
   let taskList = [];
+// CHECK STORAGE FOR taskList AND UPDATE IF FOUND
+  if (window.sessionStorage.getItem("currentTaskList")) {
+    taskList = getTaskListFromSession()
+  }
+
+  const storeTaskListInSession = (taskList) => {
+    window.sessionStorage.setItem("currentTaskList", JSON.stringify(taskList));
+  };
+
+// added for testing purposes, should clear this from exports and from index.js when feature completed
+  const clearSessionStorage = () => {
+    sessionStorage.clear();
+  };
 
   const storeTask = (obj) => {
     taskList.push(obj)
@@ -17,6 +39,7 @@ export const storage = (() => {
     for (let i = 0; i < taskList.length; i++) {
       taskList[i].dataIndex = i;
     };
+    storeTaskListInSession(taskList);
   };
 
   const retrieveTaskObject = (domIndex) => {
@@ -28,15 +51,22 @@ export const storage = (() => {
     const objectDataIndex = taskList.findIndex(task => task.dataIndex == domIndex);
     if (taskList[objectDataIndex].complete !== true) {taskList[objectDataIndex].complete = true}
     else taskList[objectDataIndex].complete = false;
+    storeTaskListInSession(taskList)
   };
+
+  const editTask = (objectToEdit) => {
+    objectToEdit.dueDate = document.getElementById("ntDueDate").value;
+    objectToEdit.taskName = document.getElementById("ntName").value;
+    objectToEdit.priority = document.getElementById("ntPriority").value;
+    objectToEdit.category = document.getElementById("ntCategory").value;
+    objectToEdit.description = document.getElementById("ntDesc").value;
+    storeTaskListInSession(taskList)
+  }
 
   const removeTask = (domIndex) => {
     const objectDataIndex = taskList.findIndex(task => task.dataIndex === parseInt(domIndex));
     taskList.splice(objectDataIndex, 1);
-  };
-
-  const getTaskList = () => {
-    return taskList;
+    storeTaskListInSession(taskList);
   };
 
   const sortTasksByDate = (date) => {
@@ -50,5 +80,5 @@ export const storage = (() => {
     if (category === "academic") return taskList.filter(task => task.category === "academic")
     if (category === "personal") return taskList.filter(task => task.category === "personal")
   };
-  return {taskFactory, storeTask, retrieveTaskObject, toggleTaskComplete, removeTask, getTaskList, sortTasksByDate, sortTasksByCategory}
+  return {taskFactory, clearSessionStorage, storeTask, retrieveTaskObject, toggleTaskComplete, editTask, removeTask, getTaskListFromSession, sortTasksByDate, sortTasksByCategory}
 })();
