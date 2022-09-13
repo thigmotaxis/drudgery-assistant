@@ -30,9 +30,9 @@ export const renderPage = (() => {
         <div class="thisWeek">This Week</div>
       </div>
       <div class="projects">Projects
+      <div class="personal">Personal</div>
         <div class="professional">Professional</div>
         <div class="academic">Academic</div>
-        <div class="personal">Personal</div>
         </div>
       <button class="addTask">Add New Task</button>
 
