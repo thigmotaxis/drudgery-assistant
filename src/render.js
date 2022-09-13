@@ -262,16 +262,16 @@ export const modifyDOM = (() => {
         <div class="inputGroup">
         <label class="formLabel" for="ntPriority">Priority:</label>
           <select class="formInput" id="ntPriority">
-            <option class="option" value="high">High</option>
             <option class="option" value="normal" selected="selected">Normal</option>
+            <option class="option" value="high">High</option>
           </select>
         </div>
         <div class="inputGroup">
           <label class="formLabel" for="ntCategory">Category:</label>
           <select class="formInput" id="ntCategory">
+          <option class="option" value="personal" selected="selected">Personal</option>
             <option class="option" value="professional">Professional</option>
             <option class="option" value="academic">Academic</option>
-            <option class="option" value="personal" selected="selected">Personal</option>
           </select>
         </div>
         <div class="inputGroup">
