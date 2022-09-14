@@ -1,4 +1,5 @@
-import {renderPage} from "./render.js"
+import {renderPage} from "./render.js";
+import {format, add} from "date-fns";
 
 export const storage = (() => {
   const taskFactory = (dueDate, taskName, priority, category, description,) => {
@@ -70,8 +71,7 @@ export const storage = (() => {
   };
 
   const sortTasksByDate = (date) => {
-    const today = new Date().toISOString().slice(0, 10);          // gets todays date and returns it in the same format as taskObject.dueDate.
-                                                                  // this will need to be updated once I dig into the date formatting library
+    const today = format(new Date(), "yyyy-MM-dd");
     if (date === "today") return taskList.filter(task => task.dueDate === today);
   };
 
