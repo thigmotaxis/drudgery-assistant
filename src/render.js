@@ -293,41 +293,34 @@ export const modifyDOM = (() => {
     const addTaskBtn = document.querySelector(".addTask")
     addTaskBtn.addEventListener("click", renderTaskForm);
   // END NEW TASK FORM LOGIC
+
+  // START SIDEBAR HANDLER LOGIC
     const sortTasksByDate = (e) => {
       const date = e.target.className;
       const sortedTaskList = storage.sortTasksByDate(date);
-      clearTasks()
       renderTasks(sortedTaskList)
     };
 
     const sortTasksByCategory = (e) => {
       const category = e.target.className;
       const sortedTaskList = storage.sortTasksByCategory(category)
-      clearTasks()
       renderTasks(sortedTaskList)
     }
 
     const addSideBarHandlers = (() => {
-      const allTasks = document.querySelector(".allTasks")
-      allTasks.addEventListener("click", () => {
-        clearTasks()
-        renderTasks()
-      });
-      const today = document.querySelector(".today");
-      today.addEventListener("click", clearTasks);
-      today.addEventListener("click", sortTasksByDate);
-      const thisWeek = document.querySelector(".thisWeek");
-      thisWeek.addEventListener("click", () => {
-        clearTasks();
-        console.log("add logic to filter taskList to return only tasks due this week");
-      });
-
+      const dates = document.querySelectorAll(".dates div")
+      dates.forEach((dateRange) => {
+        dateRange.addEventListener("click", clearTasks)
+        dateRange.addEventListener("click", sortTasksByDate)
+      })
 
       const projects = document.querySelectorAll(".projects div")
       projects.forEach((project) => {
+        project.addEventListener("click", clearTasks)
         project.addEventListener("click", sortTasksByCategory)
       });
     })();
+// END SIDEBAR HANDLER LOGIC
 
   return {clearTasks, renderTasks}
 
