@@ -71,8 +71,14 @@ export const storage = (() => {
   };
 
   const sortTasksByDate = (date) => {
-    const today = format(new Date(), "yyyy-MM-dd");
-    if (date === "today") return taskList.filter(task => task.dueDate === today);
+    const today = new Date();
+    const oneWeekFromToday = add(today, {weeks : 1});
+    const weekStart = format(today, "yyyy-MM-dd");
+    const weekEnd = format(oneWeekFromToday, "yyyy-MM-dd");
+
+    if (date === "allTasks") return taskList;
+    if (date === "today") return taskList.filter(task => task.dueDate === format(today, "yyyy-MM-dd"));
+    if (date === "thisWeek") return taskList.filter(task => task.dueDate >= weekStart && task.dueDate <= weekEnd);
   };
 
   const sortTasksByCategory = (category) => {
