@@ -1,4 +1,5 @@
 import {storage} from "./taskStorage.js"
+import {format} from "date-fns";
 import createElement from "./createComponents.js";
 import logoPH from "./images/logoPH.jpg";
 import copyrightSymbol from "./images/copyright.png";
@@ -180,6 +181,11 @@ export const modifyDOM = (() => {
     taskElement.lastChild.remove();
   };
 
+  const formatDueDateDisplay = (objectDueDate) => {
+    const displayDueDate = format(new Date(`${objectDueDate}T00:00`), "M/dd/yy");
+    return displayDueDate;
+  };
+
   const renderTasks = (taskList = storage.getTaskListFromSession()) => {
     if (document.querySelector(".formContainer")) return;
     const toDo = document.querySelector(".toDos")
@@ -188,7 +194,7 @@ export const modifyDOM = (() => {
       toDo.insertAdjacentHTML("beforeend",
       `<div class="task ${taskList[i].priority}Priority" data-index="${taskList[i].dataIndex}">
         <input class="completeTask" type="radio">
-        <div class="dueDate">${taskList[i].dueDate}</div>
+        <div class="dueDate">${formatDueDateDisplay(taskList[i].dueDate)}</div>
         <div class="taskName">${taskList[i].taskName}</div>
         <img class="editIcon" src="file:///home/abe/repos/drudgery-assistant/dist/cf6da241771896690fb9.jpg" alt="oh just an avocado placeholder">
         <img class="deleteIcon" src="file:///home/abe/repos/drudgery-assistant/dist/7491da0f585923c16e6c.jpg" alt="oh just an avocado placeholder">
