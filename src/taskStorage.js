@@ -22,8 +22,14 @@ export const storage = (() => {
     taskList = getTaskListFromSession()
   }
 
+  const sortTaskListChronologically = (taskList) => {
+    const chronoTaskList = taskList.sort((a, b) => {return a.dueDate > b.dueDate ? 1 : -1});
+    return chronoTaskList;
+  };
+
   const storeTaskListInSession = (taskList) => {
-    window.sessionStorage.setItem("currentTaskList", JSON.stringify(taskList));
+    const chronoTaskList = sortTaskListChronologically(taskList)
+    window.sessionStorage.setItem("currentTaskList", JSON.stringify(chronoTaskList));
   };
 
 // added for testing purposes, should clear this from exports and from index.js when feature completed
