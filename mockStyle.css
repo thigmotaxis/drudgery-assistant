@@ -78,38 +78,43 @@ table {
 .sideBar {
   display: flex;
   flex-direction: column;
-  width: 20vw;
+  width: 15vw;
   height: 85vh;
   border-right: 1px solid black;
 }
 
-.dates {
-  padding-top: 10%;
-  height: 30%;
+.allTasks, .urgent, .dateRanges, .categories {
+	font-weight: bold;
+	padding-left: 10%;
+	padding-top: 8%;
+	padding-bottom: 8%;
 }
 
-.allTasks, .today, .thisWeek, .projects {
-  font-weight: bold;
-  padding-left: 10%;
-  padding-top: 8%;
-  padding-bottom: 8%;
+.allTasks {
+	margin-top: 2vh;
 }
 
-.projects {
+.allTasks:hover, .urgent:hover, .dateRange:hover, .category:hover {
+	cursor:pointer;
+	background-color: rgba(100, 100, 100, .8);
+	color: white;
+}
+
+.dateRange, .category {
+	font-weight: normal;
+	padding-left: 10%;
+	padding-top: 10%;
+	padding-bottom: 5%;
+}
+
+.categories {
   height: 40%;
-}
-
-.professional, .academic, .personal {
-  font-weight: normal;
-  padding-left: 10%;
-  padding-top: 10%;
-  padding-bottom: 5%;
 }
 
 .addTask {
   margin-top: 10%;
   margin-left: 10%;
-  margin-bottom: 40%;
+  margin-bottom: 30%;
   width: 50%;
 }
 
@@ -131,9 +136,9 @@ table {
 .toDos {
   display: flex;
   flex-direction: column;
-  width: 75vw;
-  padding-left: 2.5vw;
-  padding-right: 2.5vw;
+  width: 70vw;
+  margin-left: 7.5vw;
+  margin-right: 7.5vw;
 }
 
 .title {
