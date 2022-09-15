@@ -1,5 +1,5 @@
 import {renderPage} from "./render.js";
-import {format, add} from "date-fns";
+import {format, add, isSameMonth} from "date-fns";
 
 export const storage = (() => {
   const taskFactory = (dueDate, taskName, priority, category, description,) => {
@@ -88,6 +88,7 @@ export const storage = (() => {
     if (date === "allTasks") return taskList;
     if (date === "today") return taskList.filter(task => task.dueDate === format(today, "yyyy-MM-dd"));
     if (date === "thisWeek") return taskList.filter(task => task.dueDate >= weekStart && task.dueDate <= weekEnd);
+    if (date === "thisMonth") return taskList.filter(task => isSameMonth(today, new Date(task.dueDate)));
   };
 
   const sortTasksByCategory = (category) => {
