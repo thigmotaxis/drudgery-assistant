@@ -94,6 +94,12 @@ table {
 	margin-top: 2vh;
 }
 
+.allTasks:hover, .urgent:hover, .dateRange:hover, .category:hover {
+	cursor:pointer;
+	background-color: rgba(100, 100, 100, .8);
+	color: white;
+}
+
 .dateRange, .category {
 	font-weight: normal;
 	padding-left: 10%;
