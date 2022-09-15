@@ -3,8 +3,8 @@ import {format} from "date-fns";
 import createElement from "./createComponents.js";
 import logoPH from "./images/logoPH.jpg";
 import copyrightSymbol from "./images/copyright.png";
-import editPH from "./images/editPH.jpg";
-import deletePH from "./images/deletePH.jpg";
+import editIcon from "./images/edit.png"
+import deleteIcon from "./images/delete.png";
 
 // BEGIN RENDERING OF STATIC ELEMENTS
 
@@ -200,8 +200,8 @@ export const modifyDOM = (() => {
         <input class="completeTask" type="radio">
         <div class="dueDate">${formatDueDateDisplay(taskList[i].dueDate)}</div>
         <div class="taskName">${taskList[i].taskName}</div>
-        <img class="editIcon" src="file:///home/abe/repos/drudgery-assistant/dist/cf6da241771896690fb9.jpg" alt="oh just an avocado placeholder">
-        <img class="deleteIcon" src="file:///home/abe/repos/drudgery-assistant/dist/7491da0f585923c16e6c.jpg" alt="oh just an avocado placeholder">
+        <img class="editIcon" src="file:///home/abe/repos/drudgery-assistant/dist/80f9dc0b924dab53cf8f.png" alt="oh just an edit icon shaped like a pencil">
+        <img class="deleteIcon" src="file:///home/abe/repos/drudgery-assistant/dist/4188019205283f2b3e04.png" alt="oh just a delete icon shaped like a trash can">
       </div>`)
       const radioButton = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`).firstElementChild
       if (taskList[i].complete === true) radioButton.checked = true;
