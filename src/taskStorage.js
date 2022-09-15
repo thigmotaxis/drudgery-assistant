@@ -22,13 +22,16 @@ export const storage = (() => {
     taskList = getTaskListFromSession()
   }
 
-  const sortTaskListChronologically = (taskList) => {
-    const chronoTaskList = taskList.sort((a, b) => {return a.dueDate > b.dueDate ? 1 : -1});
+// SORTS taskList BY dueDate AND SECONDARILY BY priority
+  const sortTaskList = (taskList) => {
+    const chronoTaskList = taskList.sort((a, b) => {if (a.dueDate == b.dueDate) {
+      return a.priority > b.priority ? 1 : -1;
+    } else return a.dueDate > b.dueDate ? 1 : -1});
     return chronoTaskList;
   };
 
   const storeTaskListInSession = (taskList) => {
-    const chronoTaskList = sortTaskListChronologically(taskList)
+    const chronoTaskList = sortTaskList(taskList)
     window.sessionStorage.setItem("currentTaskList", JSON.stringify(chronoTaskList));
   };
 
@@ -88,9 +91,9 @@ export const storage = (() => {
   };
 
   const sortTasksByCategory = (category) => {
+    if (category === "personal") return taskList.filter(task => task.category === "personal")
     if (category === "professional") return taskList.filter(task => task.category === "professional")
     if (category === "academic") return taskList.filter(task => task.category === "academic")
-    if (category === "personal") return taskList.filter(task => task.category === "personal")
   };
   return {taskFactory, clearSessionStorage, storeTask, retrieveTaskObject, toggleTaskComplete, editTask, removeTask, getTaskListFromSession, sortTasksByDate, sortTasksByCategory}
 })();
