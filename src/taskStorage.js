@@ -79,13 +79,16 @@ export const storage = (() => {
     storeTaskListInSession(taskList);
   };
 
+  const sortTasksByPriority = (priority) => {
+    if (priority === "allTasks") return taskList;
+    if (priority === "urgent") return taskList.filter(task => task.priority === "high");
+  };
+
   const sortTasksByDate = (date) => {
     const today = new Date();
     const oneWeekFromToday = add(today, {weeks : 1});
     const weekStart = format(today, "yyyy-MM-dd");
     const weekEnd = format(oneWeekFromToday, "yyyy-MM-dd");
-
-    if (date === "allTasks") return taskList;
     if (date === "today") return taskList.filter(task => task.dueDate === format(today, "yyyy-MM-dd"));
     if (date === "thisWeek") return taskList.filter(task => task.dueDate >= weekStart && task.dueDate <= weekEnd);
     if (date === "thisMonth") return taskList.filter(task => isSameMonth(today, new Date(task.dueDate)));
@@ -96,5 +99,5 @@ export const storage = (() => {
     if (category === "professional") return taskList.filter(task => task.category === "professional")
     if (category === "academic") return taskList.filter(task => task.category === "academic")
   };
-  return {taskFactory, clearSessionStorage, storeTask, retrieveTaskObject, toggleTaskComplete, editTask, removeTask, getTaskListFromSession, sortTasksByDate, sortTasksByCategory}
+  return {taskFactory, clearSessionStorage, storeTask, retrieveTaskObject, toggleTaskComplete, editTask, removeTask, getTaskListFromSession, sortTasksByPriority, sortTasksByDate, sortTasksByCategory}
 })();
