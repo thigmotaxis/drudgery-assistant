@@ -83,7 +83,7 @@ table {
   border-right: 1px solid black;
 }
 
-.allTasks, .urgent, .dateRanges, .categories {
+.allTasks, .urgent, .incomplete, .dateRanges, .categories {
 	font-weight: bold;
 	padding-left: 10%;
 	padding-top: 8%;
@@ -94,7 +94,7 @@ table {
 	margin-top: 2vh;
 }
 
-.allTasks:hover, .urgent:hover, .dateRange:hover, .category:hover {
+.allTasks:hover, .urgent:hover, .incomplete:hover, .dateRange:hover, .category:hover {
 	cursor:pointer;
 	background-color: rgba(100, 100, 100, .8);
 	color: white;
@@ -114,7 +114,7 @@ table {
 .addTask {
   margin-top: 10%;
   margin-left: 10%;
-  margin-bottom: 30%;
+  margin-bottom: 10%;
   width: 50%;
 }
 

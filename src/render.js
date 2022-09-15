@@ -27,13 +27,14 @@ export const renderPage = (() => {
     <div class="sideBar">
       <div class="allTasks">Display All</div>
       <div class="urgent">Display Urgent</div>
+      <div class="incomplete">Display Incomplete</div>
       <div class="dateRanges">Sort by Time
         <div id="today" class="dateRange">Today</div>
         <div id="thisWeek" class="dateRange">This Week</div>
         <div id="thisMonth" class="dateRange">This Month</div>
       </div>
       <div class="categories">Sort by Category
-        <div id="personal"class="category">Personal</div>
+        <div id="personal" class="category">Personal</div>
         <div id="professional" class="category">Professional</div>
         <div id="academic" class="category">Academic</div>
       </div>
@@ -302,20 +303,20 @@ export const modifyDOM = (() => {
     const sortTasksByPriority = (e) => {
       const priority = e.target.className;
       const sortedTaskList = storage.sortTasksByPriority(priority);
-      renderTasks(sortedTaskList)
-    }
+      renderTasks(sortedTaskList);
+    };
 
     const sortTasksByDate = (e) => {
       const date = e.target.id;
       const sortedTaskList = storage.sortTasksByDate(date);
-      renderTasks(sortedTaskList)
+      renderTasks(sortedTaskList);
     };
 
     const sortTasksByCategory = (e) => {
       const category = e.target.id;
       const sortedTaskList = storage.sortTasksByCategory(category)
-      renderTasks(sortedTaskList)
-    }
+      renderTasks(sortedTaskList);
+    };
 
     const addSideBarHandlers = (() => {
 
