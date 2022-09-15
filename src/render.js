@@ -311,16 +311,21 @@ export const modifyDOM = (() => {
     }
 
     const addSideBarHandlers = (() => {
-      const dates = document.querySelectorAll(".dateRange")
-      dates.forEach((dateRange) => {
-        dateRange.addEventListener("click", clearTasks)
-        dateRange.addEventListener("click", sortTasksByDate)
-      })
 
-      const categories = document.querySelectorAll(".category")
+      const allTasks = document.querySelector(".allTasks");
+      allTasks.addEventListener("click", clearTasks);
+      allTasks.addEventListener("click", sortTasksByDate);
+
+      const dates = document.querySelectorAll(".dateRange");
+      dates.forEach((dateRange) => {
+        dateRange.addEventListener("click", clearTasks);
+        dateRange.addEventListener("click", sortTasksByDate);
+      });
+
+      const categories = document.querySelectorAll(".category");
       categories.forEach((category) => {
-        category.addEventListener("click", clearTasks)
-        category.addEventListener("click", sortTasksByCategory)
+        category.addEventListener("click", clearTasks);
+        category.addEventListener("click", sortTasksByCategory);
       });
     })();
 // END SIDEBAR HANDLER LOGIC
