@@ -170,7 +170,11 @@ table {
 }
 
 .editIcon, .deleteIcon {
-  height: 3rem;
+  height: 2rem;
+}
+
+.editIcon:hover, .deleteIcon:hover {
+	height: 2.5rem;
 }
 
 .taskDescription {

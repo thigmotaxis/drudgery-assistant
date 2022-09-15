@@ -152,7 +152,6 @@ table {
   grid-template-columns: 5% 10% 75% 5% 5%;
   margin-bottom: 10px;
   border: 4px solid black;
-
 }
 
 .highPriority {
@@ -170,7 +169,7 @@ table {
 }
 
 .editIcon, .deleteIcon {
-  height: 3rem;
+  height: 2rem;
 }
 
 .taskDescription {
