@@ -170,6 +170,7 @@ table {
 }
 
 .editIcon, .deleteIcon {
+	cursor:pointer;
   height: 2rem;
 }
 
@@ -217,6 +218,10 @@ button {
 	border: 1px solid black;
 	background-color: cyan;
 	border-radius: 15px;
+}
+
+button:hover {
+	cursor:pointer;
 }
 
 /* END MAIN CONTENT STYLES */

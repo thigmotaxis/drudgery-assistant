@@ -152,6 +152,7 @@ table {
   grid-template-columns: 5% 10% 75% 5% 5%;
   margin-bottom: 10px;
   border: 4px solid black;
+
 }
 
 .highPriority {
@@ -169,7 +170,12 @@ table {
 }
 
 .editIcon, .deleteIcon {
+	cursor:pointer;
   height: 2rem;
+}
+
+.editIcon:hover, .deleteIcon:hover {
+	height: 2.5rem;
 }
 
 .taskDescription {
@@ -212,6 +218,10 @@ button {
 	border: 1px solid black;
 	background-color: cyan;
 	border-radius: 15px;
+}
+
+button:hover {
+	cursor:pointer;
 }
 
 /* END MAIN CONTENT STYLES */
