@@ -250,7 +250,7 @@ export const modifyDOM = (() => {
     const category = document.getElementById("ntCategory").value
     const description = document.getElementById("ntDesc").value;
     // CONFIRMS ALL FORM ELEMENTS HAVE VALUES
-    if (!dueDate || !taskName || !description) {
+    if (!dueDate || !taskName) {
       alert("Please complete the form before submitting a new task");
       return
     };
@@ -307,7 +307,7 @@ export const modifyDOM = (() => {
         </div>
         <div class="inputGroup">
           <label class="formLabel" for="ntDesc">Task Description:</label>
-          <textarea class="formInput" id="ntDesc"></textarea>
+          <textarea class="formInput" id="ntDesc" placeholder="Optional description"></textarea>
         </div>
           <button class="submitNewTask">Add Task</button>
         </div>`)
