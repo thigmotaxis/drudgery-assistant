@@ -12,14 +12,15 @@ export const renderPage = (() => {
 
   const body = document.querySelector("body");
 
-  // NEED TO FIGURE OUT IF THE src ATTRIBUTE FOR MY IMAGE TAGS WILL BREAK WHEN DEPLOYED
+  const headerBar = createElement("div", ["headerBar"], body)
+  const logo = new Image();
+  logo.classList.add("logo");
+  logo.setAttribute("src", logoPH);
+  logo.setAttribute("alt", "oh just an avocado placeholder");
+  headerBar.appendChild(logo);
+  const headerText = createElement("div", ["headerText"], headerBar);
+  headerText.innerHTML = "Drudgery Assistant";
 
-  body.insertAdjacentHTML("afterbegin",
-  `<div class="headerBar">
-    <img src="file:///home/abe/repos/drudgery-assistant/dist/1a298f8658946c1d8f79.jpg" alt="oh just an avocado placeholder image" class="logo">
-    <div class="headerText">Drudgery Assistant</div>
-  </div>
-  `)
   const header = document.querySelector(".headerBar")
 
   header.insertAdjacentHTML("afterend",
@@ -42,11 +43,19 @@ export const renderPage = (() => {
       <button class="addTask">Add New Task</button>
 
       <div class="copyright">
-        <img src="file:///home/abe/repos/drudgery-assistant/dist/784323dd6f14334269b7.png" alt="The copyright symbol" class="footerImage">
-        <div>2022 Abe Industries</div>
       </div>
     </div>
   </div>`)
+  const copyrightContainer = document.querySelector(".copyright");
+  const footerImage = new Image();
+  footerImage.classList.add("footerImage");
+  footerImage.setAttribute("src", copyrightSymbol);
+  footerImage.setAttribute("alt", "The copyright symbol");
+  copyrightContainer.appendChild(footerImage);
+
+  const copyrightText = document.createElement("div");
+  copyrightText.innerHTML = "2022 Abe Industries";
+  copyrightContainer.appendChild(copyrightText);
 
   const sideBar = document.querySelector(".sideBar")
   sideBar.insertAdjacentHTML("afterend",
@@ -56,11 +65,11 @@ export const renderPage = (() => {
 
   // const renderHeader = (() =>{
   //   const headerBar = createElement("div", ["headerBar"], body);
-  //   const logo = new Image();
-  //   logo.classList.add("logo");
-  //   logo.setAttribute("src", logoPH);
-  //   logo.setAttribute("alt", "oh just an avocado placeholder");
-  //   headerBar.appendChild(logo);
+    // const logo = new Image();
+    // logo.classList.add("logo");
+    // logo.setAttribute("src", logoPH);
+    // logo.setAttribute("alt", "oh just an avocado placeholder");
+    // headerBar.appendChild(logo);
   //
   //   const headerText = createElement("div", ["headerText"], headerBar);
   //   headerText.innerHTML = "Drudgery Assistant";
@@ -95,11 +104,11 @@ export const renderPage = (() => {
 //     addTask.innerHTML = "Add New Task";
 // // RENDER FOOTER
 //     const copyright = createElement("div", ["copyright"], sideBar)
-//     const footerImage = new Image();
-//     footerImage.classList.add("footerImage");
-//     footerImage.setAttribute("src", copyrightSymbol);
-//     footerImage.setAttribute("alt", "The copyright symbol");
-//     copyright.appendChild(footerImage);
+    // const footerImage = new Image();
+    // footerImage.classList.add("footerImage");
+    // footerImage.setAttribute("src", copyrightSymbol);
+    // footerImage.setAttribute("alt", "The copyright symbol");
+    // copyright.appendChild(footerImage);
 //     const footerText = createElement("div", ["footerText"], copyright)
 //     footerText.innerHTML = "2022 Abe Industries";
 //   })();
@@ -205,15 +214,16 @@ export const modifyDOM = (() => {
       const task = document.querySelector(`[data-index="${parseInt(taskList[i].dataIndex)}`)
       const edit = new Image();
       edit.setAttribute("src", editIcon);
+      edit.setAttribute("alt", "oh just an edit icon shaped like a pencil")
       edit.classList.add("editIcon");
       task.appendChild(edit);
 
       const del = new Image();
       del.setAttribute("src", deleteIcon);
+      del.setAttribute("alt", "oh just a delete icon shaped like a trash can")
       del.classList.add("deleteIcon");
       task.appendChild(del)
-      // <img class="editIcon" src="./edit.png" alt="oh just an edit icon shaped like a pencil">
-      // <img class="deleteIcon" src="./delete.png" alt="oh just a delete icon shaped like a trash can">
+
       const radioButton = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`).firstElementChild
       if (taskList[i].complete === true) radioButton.checked = true;
     };
