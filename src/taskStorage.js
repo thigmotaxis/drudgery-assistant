@@ -79,9 +79,10 @@ export const storage = (() => {
     storeTaskListInSession(taskList);
   };
 
-  const sortTasksByPriority = (priority) => {
-    if (priority === "allTasks") return taskList;
-    if (priority === "urgent") return taskList.filter(task => task.priority === "high");
+  const sortTasksByAttribute = (attribute) => {
+    if (attribute === "allTasks") return taskList;
+    if (attribute === "urgent") return taskList.filter(task => task.priority === "high");
+    if (attribute === "incomplete") return taskList.filter(task => task.complete === false);
   };
 
   const sortTasksByDate = (date) => {
@@ -99,5 +100,5 @@ export const storage = (() => {
     if (category === "professional") return taskList.filter(task => task.category === "professional")
     if (category === "academic") return taskList.filter(task => task.category === "academic")
   };
-  return {taskFactory, clearSessionStorage, storeTask, retrieveTaskObject, toggleTaskComplete, editTask, removeTask, getTaskListFromSession, sortTasksByPriority, sortTasksByDate, sortTasksByCategory}
+  return {taskFactory, clearSessionStorage, storeTask, retrieveTaskObject, toggleTaskComplete, editTask, removeTask, getTaskListFromSession, sortTasksByAttribute, sortTasksByDate, sortTasksByCategory}
 })();

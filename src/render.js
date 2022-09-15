@@ -300,9 +300,9 @@ export const modifyDOM = (() => {
 
   // START SIDEBAR HANDLER LOGIC
 
-    const sortTasksByPriority = (e) => {
-      const priority = e.target.className;
-      const sortedTaskList = storage.sortTasksByPriority(priority);
+    const sortTasksByAttribute = (e) => {
+      const attribute = e.target.className;
+      const sortedTaskList = storage.sortTasksByAttribute(attribute);
       renderTasks(sortedTaskList);
     };
 
@@ -322,11 +322,15 @@ export const modifyDOM = (() => {
 
       const allTasks = document.querySelector(".allTasks");
       allTasks.addEventListener("click", clearTasks);
-      allTasks.addEventListener("click", sortTasksByPriority);
+      allTasks.addEventListener("click", sortTasksByAttribute);
 
       const urgent = document.querySelector(".urgent");
       urgent.addEventListener("click", clearTasks);
-      urgent.addEventListener("click", sortTasksByPriority);
+      urgent.addEventListener("click", sortTasksByAttribute);
+
+      const incomplete = document.querySelector(".incomplete");
+      incomplete.addEventListener("click", clearTasks);
+      incomplete.addEventListener("click", sortTasksByAttribute);
 
       const dates = document.querySelectorAll(".dateRange");
       dates.forEach((dateRange) => {
