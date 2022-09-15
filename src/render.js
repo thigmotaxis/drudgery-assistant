@@ -200,8 +200,8 @@ export const modifyDOM = (() => {
         <input class="completeTask" type="radio">
         <div class="dueDate">${formatDueDateDisplay(taskList[i].dueDate)}</div>
         <div class="taskName">${taskList[i].taskName}</div>
-        <img class="editIcon" src="file:///home/abe/repos/drudgery-assistant/dist/80f9dc0b924dab53cf8f.png" alt="oh just an edit icon shaped like a pencil">
-        <img class="deleteIcon" src="file:///home/abe/repos/drudgery-assistant/dist/4188019205283f2b3e04.png" alt="oh just a delete icon shaped like a trash can">
+        <img class="editIcon" src="./edit.png" alt="oh just an edit icon shaped like a pencil">
+        <img class="deleteIcon" src="./delete.png" alt="oh just a delete icon shaped like a trash can">
       </div>`)
       const radioButton = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`).firstElementChild
       if (taskList[i].complete === true) radioButton.checked = true;
