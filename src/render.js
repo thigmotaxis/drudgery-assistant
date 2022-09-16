@@ -63,64 +63,6 @@ export const renderPage = (() => {
     <div class="title">Unfinished Business</div>
   </div>`)
 
-  // const renderHeader = (() =>{
-  //   const headerBar = createElement("div", ["headerBar"], body);
-    // const logo = new Image();
-    // logo.classList.add("logo");
-    // logo.setAttribute("src", logoPH);
-    // logo.setAttribute("alt", "oh just an avocado placeholder");
-    // headerBar.appendChild(logo);
-  //
-  //   const headerText = createElement("div", ["headerText"], headerBar);
-  //   headerText.innerHTML = "Drudgery Assistant";
-  // })();
-
-  // const content = createElement("div", ["content"], body);
-
-//   const renderSideBar = (() => {
-//
-//     const sideBar = createElement("div", ["sideBar"], content);
-//
-//     const dateClasses = ["allTasks", "today", "thisWeek"];
-//     const dateText = ["All Tasks", "Today", "This Week"];
-//     const dates = createElement("div", ["dates"], sideBar);
-//
-//     for (let i = 0; i < dateClasses.length; i++) {
-//       const element = createElement("div", [dateClasses[i]], dates);
-//       element.innerHTML = dateText[i];
-//     };
-//
-//     const projects = createElement("div", ["projects"], sideBar);
-//     projects.innerHTML = "Projects";
-//
-//     const projectClasses = ["professional", "academic", "personal"];
-//
-//     for (let i = 0; i < projectClasses.length; i++) {
-//       const element = createElement("div", [projectClasses[i]], projects);
-//       element.innerHTML = projectClasses[i].slice(0, 1).toUpperCase() + projectClasses[i].slice(1);
-//     };
-//
-//     const addTask = createElement("button", ["addTask"], sideBar);
-//     addTask.innerHTML = "Add New Task";
-// // RENDER FOOTER
-//     const copyright = createElement("div", ["copyright"], sideBar)
-    // const footerImage = new Image();
-    // footerImage.classList.add("footerImage");
-    // footerImage.setAttribute("src", copyrightSymbol);
-    // footerImage.setAttribute("alt", "The copyright symbol");
-    // copyright.appendChild(footerImage);
-//     const footerText = createElement("div", ["footerText"], copyright)
-//     footerText.innerHTML = "2022 Abe Industries";
-//   })();
-
-
-
-  // const renderToDos = (() =>{
-  //   const toDos = createElement("div", ["toDos"], content);
-  //   const title = createElement("div", ["title"], toDos);
-  //   title.innerHTML = "Unfinished Business";
-  // })();
-
 })();
 
 // END RENDERING OF STATIC ELEMENTS
@@ -140,9 +82,6 @@ export const modifyDOM = (() => {
       const taskToDelete = e.target.parentElement;
       const dataIndex = taskToDelete.getAttribute("data-index");
       taskToDelete.firstElementChild.removeEventListener("click", toggleTaskComplete)
-// *** AFTER IMPLEMENTING EDIT BUTTON FUNCTIONALITY, USE taskToDelete.childNodes TO REMOVE LISTENER
-// *** PROBABLY NEED TO REFACTOR SO THAT TASKS ARE NOT DELETED EVERY TIME renderTaskForm IS CALLED - OTHERWISE LISTENERS NEED TO BE REMOVED WHEN THEY ARE
-      // - but I will need to delete tasks from the DOM when displaying tasks by category, so maybe I just need to remove and reapply listeners each time
       storage.removeTask(dataIndex);  // removes task object from taskList array
       taskToDelete.remove();          // removes task element from the DOM
   };
