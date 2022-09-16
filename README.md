@@ -1,6 +1,15 @@
 # drudgery-assistant
 Wrestle your life into submission with this modest to-do app
 
+
+Features:
+
+- add/edit/delete tasks
+- sort by time period/category/priority/completeness (each sort function also secondarily sorts by date and priority)
+- tasks are stored via session storage, so they will persist until the user closes the browser tab
+
+
+
 webpack/module/OOP practice
 
 Future Features to Add:
