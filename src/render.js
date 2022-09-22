@@ -1,7 +1,7 @@
 import { storage } from "./taskStorage.js";
 import { format } from "date-fns";
 import createElement from "./createComponents.js";
-import logoPH from "./images/logoPH.jpg";
+import logoImage from "./images/logo.jpg";
 import copyrightSymbol from "./images/copyright.png";
 import editIcon from "./images/edit.png";
 import deleteIcon from "./images/delete.png";
@@ -14,7 +14,7 @@ export const renderPage = (() => {
   const headerBar = createElement("div", ["headerBar"], body);
   const logo = new Image();
   logo.classList.add("logo");
-  logo.setAttribute("src", logoPH);
+  logo.setAttribute("src", logoImage);
   logo.setAttribute("alt", "oh just an avocado placeholder");
   headerBar.appendChild(logo);
   const headerText = createElement("div", ["headerText"], headerBar);
