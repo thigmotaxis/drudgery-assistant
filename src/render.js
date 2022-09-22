@@ -1,18 +1,17 @@
-import {storage} from "./taskStorage.js"
-import {format} from "date-fns";
+import { storage } from "./taskStorage.js";
+import { format } from "date-fns";
 import createElement from "./createComponents.js";
 import logoPH from "./images/logoPH.jpg";
 import copyrightSymbol from "./images/copyright.png";
-import editIcon from "./images/edit.png"
+import editIcon from "./images/edit.png";
 import deleteIcon from "./images/delete.png";
 
 // BEGIN RENDERING OF STATIC ELEMENTS
 
 export const renderPage = (() => {
-
   const body = document.querySelector("body");
 
-  const headerBar = createElement("div", ["headerBar"], body)
+  const headerBar = createElement("div", ["headerBar"], body);
   const logo = new Image();
   logo.classList.add("logo");
   logo.setAttribute("src", logoPH);
@@ -21,10 +20,11 @@ export const renderPage = (() => {
   const headerText = createElement("div", ["headerText"], headerBar);
   headerText.innerHTML = "Drudgery Assistant";
 
-  const header = document.querySelector(".headerBar")
+  const header = document.querySelector(".headerBar");
 
-  header.insertAdjacentHTML("afterend",
-  `<div class="content">
+  header.insertAdjacentHTML(
+    "afterend",
+    `<div class="content">
     <div class="sideBar">
       <div class="allTasks">Display All</div>
       <div class="urgent">Display Urgent</div>
@@ -45,7 +45,8 @@ export const renderPage = (() => {
       <div class="copyright">
       </div>
     </div>
-  </div>`)
+  </div>`
+  );
   const copyrightContainer = document.querySelector(".copyright");
   const footerImage = new Image();
   footerImage.classList.add("footerImage");
@@ -57,40 +58,43 @@ export const renderPage = (() => {
   copyrightText.innerHTML = "2022 Abe Industries";
   copyrightContainer.appendChild(copyrightText);
 
-  const sideBar = document.querySelector(".sideBar")
-  sideBar.insertAdjacentHTML("afterend",
-  `<div class="toDos">
+  const sideBar = document.querySelector(".sideBar");
+  sideBar.insertAdjacentHTML(
+    "afterend",
+    `<div class="toDos">
     <div class="title">Unfinished Business</div>
-  </div>`)
-
+  </div>`
+  );
 })();
 
 // END RENDERING OF STATIC ELEMENTS
 
 export const modifyDOM = (() => {
-
   const tasksParent = document.querySelector(".toDos");
 
   const clearTasks = () => {
     const taskElements = document.querySelectorAll(".task");
     for (let i = 0; i < taskElements.length; i++) {
       tasksParent.removeChild(taskElements[i]);
-    };
+    }
   };
 
   const removeTask = (e) => {
-      const taskToDelete = e.target.parentElement;
-      const dataIndex = taskToDelete.getAttribute("data-index");
-      taskToDelete.firstElementChild.removeEventListener("click", toggleTaskComplete)
-      storage.removeTask(dataIndex);  // removes task object from taskList array
-      taskToDelete.remove();          // removes task element from the DOM
+    const taskToDelete = e.target.parentElement;
+    const dataIndex = taskToDelete.getAttribute("data-index");
+    taskToDelete.firstElementChild.removeEventListener(
+      "click",
+      toggleTaskComplete
+    );
+    storage.removeTask(dataIndex); // removes task object from taskList array
+    taskToDelete.remove(); // removes task element from the DOM
   };
 
   const handleTaskEdit = (e) => {
     renderTaskForm();
     const domIndex = e.target.parentElement.getAttribute("data-index");
     const objectToEdit = storage.retrieveTaskObject(domIndex);
-// READ OBJECT VALUES INTO FORM
+    // READ OBJECT VALUES INTO FORM
     document.getElementById("ntDueDate").value = objectToEdit.dueDate;
     document.getElementById("ntName").value = objectToEdit.taskName;
     document.getElementById("ntPriority").value = objectToEdit.priority;
@@ -99,15 +103,19 @@ export const modifyDOM = (() => {
 
     const addTaskButton = document.querySelector(".submitNewTask");
     addTaskButton.removeEventListener("click", handleNewTaskSubmission);
-// LISTENER PUSHES FORM VALUES TO OBJECT
+    // LISTENER PUSHES FORM VALUES TO OBJECT
     addTaskButton.addEventListener("click", () => {
-      storage.editTask(objectToEdit)
-    }), {once: true};
+      storage.editTask(objectToEdit);
+    }),
+      { once: true };
     addTaskButton.addEventListener("click", () => {
       const form = document.querySelector(".formContainer");
-      form.remove(), {once: true};
+      form.remove(), { once: true };
     });
-    addTaskButton.addEventListener("click", () => renderTasks(storage.getTaskListFromSession())), {once: true};
+    addTaskButton.addEventListener("click", () =>
+      renderTasks(storage.getTaskListFromSession())
+    ),
+      { once: true };
   };
 
   const toggleTaskComplete = (e) => {
@@ -116,15 +124,21 @@ export const modifyDOM = (() => {
     const checked = taskToToggle.classList.toggle("complete");
     if (checked !== true) radioButton.checked = false;
     const dataIndex = parseInt(taskToToggle.getAttribute("data-index"));
-    storage.toggleTaskComplete(dataIndex)
+    storage.toggleTaskComplete(dataIndex);
   };
 
   const expandTask = (e) => {
     const taskElement = e.target;
-    const taskDescription = createElement("div", ["taskDescription"], taskElement);
-    const domDataIndex = taskElement.getAttribute("data-index")
+    const taskDescription = createElement(
+      "div",
+      ["taskDescription"],
+      taskElement
+    );
+    const domDataIndex = taskElement.getAttribute("data-index");
     const taskList = storage.getTaskListFromSession();
-    const objectDataIndex = taskList.findIndex(task => task.dataIndex == domDataIndex);
+    const objectDataIndex = taskList.findIndex(
+      (task) => task.dataIndex == domDataIndex
+    );
     taskDescription.innerHTML = taskList[objectDataIndex].description;
   };
 
@@ -134,50 +148,68 @@ export const modifyDOM = (() => {
   };
 
   const formatDueDateDisplay = (objectDueDate) => {
-    const displayDueDate = format(new Date(`${objectDueDate}T00:00`), "M/dd/yy");
+    const displayDueDate = format(
+      new Date(`${objectDueDate}T00:00`),
+      "M/dd/yy"
+    );
     return displayDueDate;
   };
 
   const renderTasks = (taskList = storage.getTaskListFromSession()) => {
     if (document.querySelector(".formContainer")) return;
-    const toDo = document.querySelector(".toDos")
-    for (let i = 0; i < taskList.length; i++){
-
-      toDo.insertAdjacentHTML("beforeend",
-      `<div class="task ${taskList[i].priority}Priority" data-index="${taskList[i].dataIndex}">
+    const toDo = document.querySelector(".toDos");
+    for (let i = 0; i < taskList.length; i++) {
+      toDo.insertAdjacentHTML(
+        "beforeend",
+        `<div class="task ${taskList[i].priority}Priority" data-index="${
+          taskList[i].dataIndex
+        }">
         <input class="completeTask" type="radio">
         <div class="dueDate">${formatDueDateDisplay(taskList[i].dueDate)}</div>
         <div class="taskName">${taskList[i].taskName}</div>
-      </div>`)
+      </div>`
+      );
 
-      const task = document.querySelector(`[data-index="${parseInt(taskList[i].dataIndex)}`)
+      const task = document.querySelector(
+        `[data-index="${parseInt(taskList[i].dataIndex)}`
+      );
       const edit = new Image();
       edit.setAttribute("src", editIcon);
-      edit.setAttribute("alt", "oh just an edit icon shaped like a pencil")
+      edit.setAttribute("alt", "oh just an edit icon shaped like a pencil");
       edit.classList.add("editIcon");
       task.appendChild(edit);
 
       const del = new Image();
       del.setAttribute("src", deleteIcon);
-      del.setAttribute("alt", "oh just a delete icon shaped like a trash can")
+      del.setAttribute("alt", "oh just a delete icon shaped like a trash can");
       del.classList.add("deleteIcon");
-      task.appendChild(del)
+      task.appendChild(del);
 
-      const radioButton = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`).firstElementChild
+      const radioButton = document.querySelector(
+        `[data-index="${taskList[i].dataIndex}"]`
+      ).firstElementChild;
       if (taskList[i].complete === true) radioButton.checked = true;
-    };
-    const taskElements = document.querySelectorAll(".task").length
+    }
+    const taskElements = document.querySelectorAll(".task").length;
     for (let i = 0; i < taskElements; i++) {
-      const task = document.querySelector(`[data-index="${taskList[i].dataIndex}"]`);
+      const task = document.querySelector(
+        `[data-index="${taskList[i].dataIndex}"]`
+      );
       task.addEventListener("mouseenter", expandTask);
       task.addEventListener("mouseleave", shrinkTask);
-      const radio = document.querySelector(`[data-index="${taskList[i].dataIndex}"] input`);
+      const radio = document.querySelector(
+        `[data-index="${taskList[i].dataIndex}"] input`
+      );
       if (taskList[i].complete === true) task.classList.add("complete");
       radio.addEventListener("click", toggleTaskComplete);
-      const editIcon = document.querySelector(`[data-index="${taskList[i].dataIndex}"] .editIcon`)
-      editIcon.addEventListener("click", handleTaskEdit)
-      const deleteIcon = document.querySelector(`[data-index="${taskList[i].dataIndex}"] .deleteIcon`)
-      deleteIcon.addEventListener("click", removeTask), {once: true};
+      const editIcon = document.querySelector(
+        `[data-index="${taskList[i].dataIndex}"] .editIcon`
+      );
+      editIcon.addEventListener("click", handleTaskEdit);
+      const deleteIcon = document.querySelector(
+        `[data-index="${taskList[i].dataIndex}"] .deleteIcon`
+      );
+      deleteIcon.addEventListener("click", removeTask), { once: true };
     }
   };
 
@@ -186,40 +218,47 @@ export const modifyDOM = (() => {
     const dueDate = document.getElementById("ntDueDate").value;
     const taskName = document.getElementById("ntName").value;
     const priority = document.getElementById("ntPriority").value;
-    const category = document.getElementById("ntCategory").value
+    const category = document.getElementById("ntCategory").value;
     const description = document.getElementById("ntDesc").value;
     // CONFIRMS ALL FORM ELEMENTS HAVE VALUES
     if (!dueDate || !taskName) {
       alert("Please complete the form before submitting a new task");
-      return
-    };
-    const taskObject = storage.taskFactory(dueDate, taskName, priority, category, description);
+      return;
+    }
+    const taskObject = storage.taskFactory(
+      dueDate,
+      taskName,
+      priority,
+      category,
+      description
+    );
     return taskObject;
   };
 
   const handleNewTaskSubmission = () => {
-// CREATES AND STORES NEW OBJECT
+    // CREATES AND STORES NEW OBJECT
     const taskObject = storeFormValues();
     if (!taskObject) return;
     storage.storeTask(taskObject);
-// REMOVES FORM ELEMENTS AND LISTENER
-    const formButton = document.querySelector(".submitNewTask")
+    // REMOVES FORM ELEMENTS AND LISTENER
+    const formButton = document.querySelector(".submitNewTask");
     formButton.removeEventListener("click", handleNewTaskSubmission);
 
     const form = document.querySelector(".formContainer");
     tasksParent.removeChild(form);
-// REFRESHES DISPLAYED TASKLIST
+    // REFRESHES DISPLAYED TASKLIST
     clearTasks();
     renderTasks();
   };
 
   // ADD LOGIC TO CREATE NEW TASK FORM ELEMENTS
-    const renderTaskForm = () => {
-      if (document.querySelector(".formContainer")) return;  // prevents rendering of multiple forms
-      clearTasks();
+  const renderTaskForm = () => {
+    if (document.querySelector(".formContainer")) return; // prevents rendering of multiple forms
+    clearTasks();
 
-      const toDos = document.querySelector(".toDos")
-      toDos.insertAdjacentHTML("beforeend",
+    const toDos = document.querySelector(".toDos");
+    toDos.insertAdjacentHTML(
+      "beforeend",
       `<div class="formContainer">
         <div class="inputGroup">
           <label class="formLabel" for="ntName">Task Name:</label>
@@ -249,63 +288,62 @@ export const modifyDOM = (() => {
           <textarea class="formInput" id="ntDesc" placeholder="Optional description"></textarea>
         </div>
           <button class="submitNewTask">Add Task</button>
-        </div>`)
-      const formButton = document.querySelector(".submitNewTask")
-      formButton.addEventListener("click", handleNewTaskSubmission);
-    };
+        </div>`
+    );
+    const formButton = document.querySelector(".submitNewTask");
+    formButton.addEventListener("click", handleNewTaskSubmission);
+  };
 
-    const addTaskBtn = document.querySelector(".addTask")
-    addTaskBtn.addEventListener("click", renderTaskForm);
+  const addTaskBtn = document.querySelector(".addTask");
+  addTaskBtn.addEventListener("click", renderTaskForm);
   // END NEW TASK FORM LOGIC
 
   // START SIDEBAR HANDLER LOGIC
 
-    const sortTasksByAttribute = (e) => {
-      const attribute = e.target.className;
-      const sortedTaskList = storage.sortTasksByAttribute(attribute);
-      renderTasks(sortedTaskList);
-    };
+  const sortTasksByAttribute = (e) => {
+    const attribute = e.target.className;
+    const sortedTaskList = storage.sortTasksByAttribute(attribute);
+    renderTasks(sortedTaskList);
+  };
 
-    const sortTasksByDate = (e) => {
-      const date = e.target.id;
-      const sortedTaskList = storage.sortTasksByDate(date);
-      renderTasks(sortedTaskList);
-    };
+  const sortTasksByDate = (e) => {
+    const date = e.target.id;
+    const sortedTaskList = storage.sortTasksByDate(date);
+    renderTasks(sortedTaskList);
+  };
 
-    const sortTasksByCategory = (e) => {
-      const category = e.target.id;
-      const sortedTaskList = storage.sortTasksByCategory(category)
-      renderTasks(sortedTaskList);
-    };
+  const sortTasksByCategory = (e) => {
+    const category = e.target.id;
+    const sortedTaskList = storage.sortTasksByCategory(category);
+    renderTasks(sortedTaskList);
+  };
+  // Assign sidebar handlers
+  (() => {
+    const allTasks = document.querySelector(".allTasks");
+    allTasks.addEventListener("click", clearTasks);
+    allTasks.addEventListener("click", sortTasksByAttribute);
 
-    const addSideBarHandlers = (() => {
+    const urgent = document.querySelector(".urgent");
+    urgent.addEventListener("click", clearTasks);
+    urgent.addEventListener("click", sortTasksByAttribute);
 
-      const allTasks = document.querySelector(".allTasks");
-      allTasks.addEventListener("click", clearTasks);
-      allTasks.addEventListener("click", sortTasksByAttribute);
+    const incomplete = document.querySelector(".incomplete");
+    incomplete.addEventListener("click", clearTasks);
+    incomplete.addEventListener("click", sortTasksByAttribute);
 
-      const urgent = document.querySelector(".urgent");
-      urgent.addEventListener("click", clearTasks);
-      urgent.addEventListener("click", sortTasksByAttribute);
+    const dates = document.querySelectorAll(".dateRange");
+    dates.forEach((dateRange) => {
+      dateRange.addEventListener("click", clearTasks);
+      dateRange.addEventListener("click", sortTasksByDate);
+    });
 
-      const incomplete = document.querySelector(".incomplete");
-      incomplete.addEventListener("click", clearTasks);
-      incomplete.addEventListener("click", sortTasksByAttribute);
+    const categories = document.querySelectorAll(".category");
+    categories.forEach((category) => {
+      category.addEventListener("click", clearTasks);
+      category.addEventListener("click", sortTasksByCategory);
+    });
+  })();
+  // END SIDEBAR HANDLER LOGIC
 
-      const dates = document.querySelectorAll(".dateRange");
-      dates.forEach((dateRange) => {
-        dateRange.addEventListener("click", clearTasks);
-        dateRange.addEventListener("click", sortTasksByDate);
-      });
-
-      const categories = document.querySelectorAll(".category");
-      categories.forEach((category) => {
-        category.addEventListener("click", clearTasks);
-        category.addEventListener("click", sortTasksByCategory);
-      });
-    })();
-// END SIDEBAR HANDLER LOGIC
-
-  return {clearTasks, renderTasks}
-
+  return { clearTasks, renderTasks };
 })();

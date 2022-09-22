@@ -1,45 +1,126 @@
 /* BEGIN MEYER RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 /* END MEYER RESET */
 
@@ -83,28 +164,37 @@ table {
   border-right: 1px solid black;
 }
 
-.allTasks, .urgent, .incomplete, .dateRanges, .categories {
-	font-weight: bold;
-	padding-left: 10%;
-	padding-top: 8%;
-	padding-bottom: 8%;
+.allTasks,
+.urgent,
+.incomplete,
+.dateRanges,
+.categories {
+  font-weight: bold;
+  padding-left: 10%;
+  padding-top: 8%;
+  padding-bottom: 8%;
 }
 
 .allTasks {
-	margin-top: 2vh;
+  margin-top: 2vh;
 }
 
-.allTasks:hover, .urgent:hover, .incomplete:hover, .dateRange:hover, .category:hover {
-	cursor:pointer;
-	background-color: rgba(100, 100, 100, .8);
-	color: white;
+.allTasks:hover,
+.urgent:hover,
+.incomplete:hover,
+.dateRange:hover,
+.category:hover {
+  cursor: pointer;
+  background-color: rgba(100, 100, 100, 0.8);
+  color: white;
 }
 
-.dateRange, .category {
-	font-weight: normal;
-	padding-left: 10%;
-	padding-top: 10%;
-	padding-bottom: 5%;
+.dateRange,
+.category {
+  font-weight: normal;
+  padding-left: 10%;
+  padding-top: 10%;
+  padding-bottom: 5%;
 }
 
 .categories {
@@ -119,14 +209,14 @@ table {
 }
 
 .copyright {
-	padding-left: 10%;
-	padding-top: 15%;
-	display: flex;
-	padding-bottom: 5%;
+  padding-left: 10%;
+  padding-top: 15%;
+  display: flex;
+  padding-bottom: 5%;
 }
 
 .footerImage {
-	height: 1rem;
+  height: 1rem;
 }
 
 /* END SIDEBAR STYLES */
@@ -152,30 +242,35 @@ table {
   grid-template-columns: 5% 10% 75% 5% 5%;
   margin-bottom: 10px;
   border: 4px solid black;
-
 }
 
 .highPriority {
-	border-color: red;
+  border-color: red;
 }
 
-.radio, .dueDate, .editIcon, .deleteIcon {
+.radio,
+.dueDate,
+.editIcon,
+.deleteIcon {
   place-self: center;
 }
 
-.taskName, .taskDescription {
+.taskName,
+.taskDescription {
   align-self: center;
-	padding-top: 2%;
-	padding-bottom: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
-.editIcon, .deleteIcon {
-	cursor:pointer;
+.editIcon,
+.deleteIcon {
+  cursor: pointer;
   height: 2rem;
 }
 
-.editIcon:hover, .deleteIcon:hover {
-	height: 2.5rem;
+.editIcon:hover,
+.deleteIcon:hover {
+  height: 2.5rem;
 }
 
 .taskDescription {
@@ -183,45 +278,47 @@ table {
 }
 
 .complete {
-	opacity: .5;
-	text-decoration: line-through;
-	border-color: gray;
+  opacity: 0.5;
+  text-decoration: line-through;
+  border-color: gray;
 }
 
 .formContainer {
-	border: 4px solid black;
+  border: 4px solid black;
   padding: 2.5vh;
   height: 25vh;
   display: flex;
-	flex-direction: column;
+  flex-direction: column;
 }
 
 .inputGroup {
   display: grid;
-	grid-template-columns: 1fr 4fr;
-	place-items: start;
-	height: 5vh;
+  grid-template-columns: 1fr 4fr;
+  place-items: start;
+  height: 5vh;
 }
 
-.formContainer input, textarea, select {
-	width: 100%;
+.formContainer input,
+textarea,
+select {
+  width: 100%;
 }
 
 .submitNewTask {
   width: 15%;
-	margin-top: 1.25vh;
-	align-self: flex-end;
+  margin-top: 1.25vh;
+  align-self: flex-end;
 }
 
 button {
-	height: 2.5vh;
-	border: 1px solid black;
-	background-color: cyan;
-	border-radius: 15px;
+  height: 2.5vh;
+  border: 1px solid black;
+  background-color: cyan;
+  border-radius: 15px;
 }
 
 button:hover {
-	cursor:pointer;
+  cursor: pointer;
 }
 
 /* END MAIN CONTENT STYLES */
