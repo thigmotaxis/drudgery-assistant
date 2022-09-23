@@ -15,7 +15,10 @@ export const renderPage = (() => {
   const logo = new Image();
   logo.classList.add("logo");
   logo.setAttribute("src", logoImage);
-  logo.setAttribute("alt", "oh just an avocado placeholder");
+  logo.setAttribute(
+    "alt",
+    "a man carrying an extremely large rock on his back"
+  );
   headerBar.appendChild(logo);
   const headerText = createElement("div", ["headerText"], headerBar);
   headerText.innerHTML = "Drudgery Assistant";
@@ -29,7 +32,7 @@ export const renderPage = (() => {
       <div class="allTasks">Display All</div>
       <div class="urgent">Display Urgent</div>
       <div class="incomplete">Display Incomplete</div>
-      <div class="dateRanges">Sort by Time
+      <div class="dateRanges">Sort by Due Date
         <div id="today" class="dateRange">Today</div>
         <div id="thisWeek" class="dateRange">This Week</div>
         <div id="thisMonth" class="dateRange">This Month</div>
