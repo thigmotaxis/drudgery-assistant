@@ -1,7 +1,7 @@
 import { storage } from "./taskStorage.js";
 import { format } from "date-fns";
 import createElement from "./createComponents.js";
-import logoImage from "./images/logo.jpg";
+import logoImage from "./images/logo-120w.png";
 import copyrightSymbol from "./images/copyright.png";
 import editIcon from "./images/edit.png";
 import deleteIcon from "./images/delete.png";
