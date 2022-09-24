@@ -2,7 +2,7 @@ import { storage } from "./taskStorage.js";
 import { format } from "date-fns";
 import createElement from "./createComponents.js";
 import logoImage from "./images/logo-120w.png";
-import copyrightSymbol from "./images/copyright.png";
+import copyrightSymbol from "./images/copyright-16w.png";
 import editIcon from "./images/edit.png";
 import deleteIcon from "./images/delete.png";
 
