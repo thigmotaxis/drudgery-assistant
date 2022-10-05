@@ -134,24 +134,110 @@ table {
 .headerBar {
   display: flex;
   align-items: center;
-  padding: 12px;
+  gap: 12px;
   border-bottom: 1px solid black;
+  padding: 12px;
 }
 
 .headerText {
-  font-size: 3rem;
-  margin-left: 120px;
-  /* this padding value should line headerText up with sidebar */
+  font-size: 2.5rem;
 }
 
 /* END HEADER STYLES */
 
-@media (max-width: 599px) {
+.content {
+  display: flex;
+}
+
+/* BEGIN SIDEBAR STYLES */
+
+.sideBar {
+  display: none;
+}
+
+/* .sideBar {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  min-height: 85vh;
+  border-right: 1px solid black;
+}
+
+.allTasks,
+.urgent,
+.incomplete,
+.dateRanges,
+.categories {
+  font-weight: bold;
+  padding-left: 10%;
+  padding-top: 8%;
+  padding-bottom: 8%;
+}
+
+.allTasks {
+  margin-top: 2vh;
+}
+
+.allTasks:hover,
+.urgent:hover,
+.incomplete:hover,
+.dateRange:hover,
+.category:hover {
+  cursor: pointer;
+  background-color: rgba(100, 100, 100, 0.8);
+  color: white;
+}
+
+.dateRange,
+.category {
+  font-weight: normal;
+  padding-left: 10%;
+  padding-top: 10%;
+  padding-bottom: 5%;
+}
+
+.addTask {
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-bottom: 10%;
+  max-width: 150px;
+}
+
+.copyright {
+  padding-left: 10%;
+  padding-top: 15%;
+  display: flex;
+  padding-bottom: 5%;
+}
+
+.footerImage {
+  height: 1rem;
+} */
+
+/* END SIDEBAR STYLES */
+
+@media (min-width: 600px) {
+  .headerBar {
+    gap: 120px;
+    /* this value should line header text up with the edge of the sidebar on desktop layouts */
+  }
   .headerText {
-    font-size: 2.5rem;
-    padding-left: 12px;
+    font-size: 3rem;
   }
-  .sideBar {
-    display: none;
-  }
+}
+
+.title,
+.formContainer,
+.taskDescription {
+  display: none;
+}
+
+.toDos {
+  min-height: 80vh;
+}
+
+.task {
+  display: none;
+  /* display: grid; */
+  grid-template-columns: 1fr 2fr 10fr 1fr 1fr;
 }
