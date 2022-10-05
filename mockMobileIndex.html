@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tasks</title>
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="./mockMobileStyle.css" />
+  </head>
+  <body>
+    <div class="headerBar">
+      <img
+        src="./src/images/logo-120w.png"
+        alt="a man pushing a rock up a hill"
+        class="logo"
+      />
+      <div class="headerText">Drudgery Assistant</div>
+    </div>
+
+    <div class="content">
+      <div class="sideBar">
+        <div class="allTasks">Display All</div>
+        <div class="urgent">Display Urgent</div>
+        <div class="incomplete">Display Incomplete</div>
+        <div class="dateRanges">
+          Sort by Due Date
+          <div id="today" class="dateRange">Today</div>
+          <div id="thisWeek" class="dateRange">This Week</div>
+          <div id="thisMonth" class="dateRange">This Month</div>
+        </div>
+        <div class="categories">
+          Sort by Category
+          <div id="personal" class="category">Personal</div>
+          <div id="professional" class="category">Professional</div>
+          <div id="academic" class="category">Academic</div>
+        </div>
+
+        <button class="addTask">Add New Task</button>
+
+        <div class="copyright">
+          <img
+            src="./src/images/copyright-16w.png"
+            alt="The copyright symbol"
+            class="footerImage"
+          />
+          <div>2022 Abe Industries</div>
+        </div>
+      </div>
+
+      <div class="toDos">
+        <div class="title">Unfinished Business</div>
+
+        <div class="task highPriority">
+          <input type="radio" class="toggleTaskComplete" />
+          <div class="dueDate">9/1/22</div>
+          <div class="taskName">Polish resume</div>
+          <img
+            src="./src/images/edit-36w.png"
+            alt="oh just an edit icon shaped like a pencil"
+            class="editIcon"
+          />
+          <img
+            src="./src/images/delete-36w.png"
+            alt="oh just a delete icon shaped like a trash can"
+            class="deleteIcon"
+          />
+        </div>
+        <div class="task">
+          <input type="radio" class="toggleTaskComplete" />
+          <div class="dueDate">9/1/22</div>
+          <div class="taskName">Practice OOP</div>
+          <img
+            src="./src/images/edit-36w.png"
+            alt="oh just an edit icon shaped like a pencil"
+            class="editIcon"
+          />
+          <img
+            src="./src/images/delete-36w.png"
+            alt="oh just a delete icon shaped like a trash can"
+            class="deleteIcon"
+          />
+          <div class="taskDescription">make a to-do list app</div>
+        </div>
+
+        <div class="task">
+          <input type="radio" class="toggleTaskComplete" />
+          <div class="dueDate">9/1/22</div>
+          <div class="taskName">Run dishwasher</div>
+          <img
+            src="./src/images/edit-36w.png"
+            alt="oh just an edit icon shaped like a pencil"
+            class="editIcon"
+          />
+          <img
+            src="./src/images/delete-36w.png"
+            alt="oh just a delete icon shaped like a trash can"
+            class="deleteIcon"
+          />
+        </div>
+
+        <div class="task complete">
+          <input type="radio" class="toggleTaskComplete" />
+          <div class="dueDate">9/1/22</div>
+          <div class="taskName">Plan TRT resupplies</div>
+          <img
+            src="./src/images/edit-36w.png"
+            alt="oh just an edit icon shaped like a pencil"
+            class="editIcon"
+          />
+          <img
+            src="./src/images/delete-36w.png"
+            alt="oh just a delete icon shaped like a trash can"
+            class="deleteIcon"
+          />
+        </div>
+
+        <div class="formContainer">
+          <div class="inputGroup">
+            <label for="ntName">Task Name:</label>
+            <input type="text" id="ntName" />
+          </div>
+
+          <div class="inputGroup">
+            <label for="ntDueDate">Due Date:</label>
+            <input type="date" id="ntDueDate" />
+          </div>
+
+          <div class="inputGroup">
+            <label for="ntPriority">Priority:</label>
+            <select name="ntPriority" id="ntPriority" autocomplete="off">
+              <option value="normal" selected>Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <div class="inputGroup">
+            <label for="ntCategory">Category:</label>
+            <select name="ntCategory" id="ntCategory" autocomplete="off">
+              <option value="personal" selected>Personal</option>
+              <option value="professional">Professional</option>
+              <option value="academic">Academic</option>
+            </select>
+          </div>
+
+          <div class="inputGroup">
+            <label for="ntDesc">Task Description:</label>
+            <textarea id="ntDesc" rows="2" cols="80"></textarea>
+          </div>
+
+          <button class="submitNewTask">Add Task</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

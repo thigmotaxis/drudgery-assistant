@@ -135,8 +135,9 @@ table {
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
   padding: 12px;
+  margin-bottom: clamp(10px, 3vh, 20px);
 }
 
 .headerText {
@@ -226,18 +227,38 @@ table {
   }
 }
 
+/* BEGIN MAIN CONTENT STYLES */
 .title,
-.formContainer,
-.taskDescription {
+.formContainer {
   display: none;
-}
-
-.toDos {
-  min-height: 80vh;
 }
 
 .task {
-  display: none;
-  /* display: grid; */
-  grid-template-columns: 1fr 2fr 10fr 1fr 1fr;
+  display: grid;
+  grid-template-columns: 2fr 3fr 10fr 1fr 1fr;
+  margin-top: 10px;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  border: 4px solid black;
 }
+
+.task > * {
+  place-self: center;
+}
+
+.dueDate,
+.taskName,
+.taskDescription {
+  justify-self: left;
+}
+
+.taskDescription {
+  font-size: 0.8rem;
+  grid-column: 3/4;
+}
+
+.highPriority {
+  border: 4px solid red;
+}
+
+/* END MAIN CONTENT STYLES */
