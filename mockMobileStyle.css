@@ -161,7 +161,7 @@ table {
   display: none;
   flex-direction: column;
   min-width: var(--sideBarWidth);
-  height: calc(100vh - 122px);
+  height: calc(100vh - 182px);
   border-right: 2px solid black;
 }
 
@@ -199,21 +199,7 @@ table {
 }
 
 .addTask {
-  margin-top: 10%;
-  margin-left: 10%;
-  margin-bottom: 10%;
   max-width: 150px;
-}
-
-.copyright {
-  padding-left: 10%;
-  padding-top: 15%;
-  display: flex;
-  padding-bottom: 5%;
-}
-
-.footerImage {
-  height: 1rem;
 }
 
 /* END SIDEBAR STYLES */
@@ -307,6 +293,47 @@ button {
 }
 
 /* END MAIN CONTENT STYLES */
+
+.footer {
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: white;
+}
+
+.newTaskContainer {
+  display: flex;
+  align-items: center;
+}
+
+.newTaskText {
+  color: #ff6f00;
+  font-weight: bold;
+}
+
+.copyright {
+  display: none;
+}
+
+.footerButton,
+.copyright {
+  padding: 8px;
+}
+
+.copyrightText {
+  font-weight: bold;
+}
+
+.footerImage {
+  height: 1rem;
+}
+
 @media (min-width: 600px) {
   .headerBar {
     gap: 120px;
@@ -332,5 +359,18 @@ button {
   .task,
   .formContainer {
     width: clamp(300px, 70%, 900px);
+  }
+
+  .footerButton,
+  .copyright {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .copyright {
+    display: flex;
+  }
+  .toggleSettings {
+    display: none;
   }
 }
