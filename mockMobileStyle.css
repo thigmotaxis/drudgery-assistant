@@ -158,11 +158,14 @@ table {
 /* BEGIN SIDEBAR STYLES */
 
 .sideBar {
+  position: absolute;
+  z-index: 2;
   display: none;
   flex-direction: column;
   min-width: var(--sideBarWidth);
   height: calc(100vh - 182px);
   border-right: 2px solid black;
+  background-color: white;
 }
 
 .allTasks,
@@ -177,7 +180,7 @@ table {
 }
 
 .allTasks {
-  margin-top: 2vh;
+  margin-top: 6%;
 }
 
 .allTasks:hover,
@@ -196,10 +199,6 @@ table {
   padding-left: 10%;
   padding-top: 10%;
   padding-bottom: 5%;
-}
-
-.addTask {
-  max-width: 150px;
 }
 
 /* END SIDEBAR STYLES */
@@ -351,6 +350,7 @@ button {
   }
   .sideBar {
     display: flex;
+    position: static;
   }
   .toDos {
     width: calc(100vw - var(--sideBarWidth));
