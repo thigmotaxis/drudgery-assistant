@@ -2,7 +2,9 @@ import { storage } from "./taskStorage.js";
 import { format } from "date-fns";
 import createElement from "./createComponents.js";
 import logoImage from "./images/logo-120w.png";
-import copyrightSymbol from "./images/copyright-16w.png";
+import newTaskImg from "./images/addTask-36w.png";
+import copyrightSymbol from "./images/copyright-24w.png";
+import settings from "./images/settings-36w.png";
 import editIcon from "./images/edit.png";
 import deleteIcon from "./images/delete.png";
 
@@ -15,10 +17,7 @@ export const renderPage = (() => {
   const logo = new Image();
   logo.classList.add("logo");
   logo.setAttribute("src", logoImage);
-  logo.setAttribute(
-    "alt",
-    "a man carrying an extremely large rock on his back"
-  );
+  logo.setAttribute("alt", "a man pushing a rock up a hill");
   headerBar.appendChild(logo);
   const headerText = createElement("div", ["headerText"], headerBar);
   headerText.innerHTML = "Drudgery Assistant";
@@ -28,38 +27,53 @@ export const renderPage = (() => {
   header.insertAdjacentHTML(
     "afterend",
     `<div class="content">
-    <div class="sideBar">
-      <div class="allTasks">Display All</div>
-      <div class="urgent">Display Urgent</div>
-      <div class="incomplete">Display Incomplete</div>
-      <div class="dateRanges">Sort by Due Date
-        <div id="today" class="dateRange">Today</div>
-        <div id="thisWeek" class="dateRange">This Week</div>
-        <div id="thisMonth" class="dateRange">This Month</div>
-      </div>
-      <div class="categories">Sort by Category
-        <div id="personal" class="category">Personal</div>
-        <div id="professional" class="category">Professional</div>
-        <div id="academic" class="category">Academic</div>
+      <div class="sideBar">
+        <div class="allTasks">Display All</div>
+        <div class="urgent">Display Urgent</div>
+        <div class="incomplete">Display Incomplete</div>
+        <div class="dateRanges">Sort by Due Date
+          <div id="today" class="dateRange">Today</div>
+          <div id="thisWeek" class="dateRange">This Week</div>
+          <div id="thisMonth" class="dateRange">This Month</div>
+        </div>
+        <div class="categories">Sort by Category
+          <div id="personal" class="category">Personal</div>
+          <div id="professional" class="category">Professional</div>
+          <div id="academic" class="category">Academic</div>
       </div>
 
-      <button class="addTask">Add New Task</button>
-
-      <div class="copyright">
-      </div>
-    </div>
+      <div class="footer"></div>
   </div>`
   );
-  const copyrightContainer = document.querySelector(".copyright");
-  const footerImage = new Image();
-  footerImage.classList.add("footerImage");
-  footerImage.setAttribute("src", copyrightSymbol);
-  footerImage.setAttribute("alt", "The copyright symbol");
-  copyrightContainer.appendChild(footerImage);
+  const footer = document.querySelector(".footer");
+
+  const newTaskContainer = createElement("div", ["newTaskContainer"], footer);
+  const newTaskButton = new Image();
+  newTaskButton.classList.add("addTask", "footerButton");
+  newTaskButton.setAttribute("src", newTaskImg);
+  newTaskContainer.appendChild(newTaskButton);
+
+  const newTaskText = createElement("div", ["newTaskText"], newTaskContainer);
+  newTaskText.innerHTML = "Add Task";
+
+  const copyright = createElement("div", ["copyright"], footer);
+
+  const copyrightImage = new Image();
+  copyrightImage.classList.add("footerImage");
+  copyrightImage.setAttribute("src", copyrightSymbol);
+  copyrightImage.setAttribute("alt", "The copyright symbol");
+  copyright.appendChild(copyrightImage);
 
   const copyrightText = document.createElement("div");
   copyrightText.innerHTML = "2022 Abe Industries";
-  copyrightContainer.appendChild(copyrightText);
+  copyright.appendChild(copyrightText);
+
+  const toggleSettings = createElement("div", ["toggleSettings"], footer);
+  const settingsButton = new Image();
+  settingsButton.classList.add("footerButton");
+  settingsButton.setAttribute("src", settings);
+  settingsButton.setAttribute("alt", "");
+  toggleSettings.appendChild(settingsButton);
 
   const sideBar = document.querySelector(".sideBar");
   sideBar.insertAdjacentHTML(
