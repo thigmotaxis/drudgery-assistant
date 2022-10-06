@@ -234,9 +234,14 @@ table {
 .task {
   display: grid;
   grid-template-columns: 1fr 1fr 15fr 1fr 1fr;
+}
+
+.task,
+.formContainer {
   margin-top: 10px;
   margin-left: var(--main-content-margin);
   margin-right: var(--main-content-margin);
+  width: calc(100% - calc(var(--main-content-margin) * 2));
   border: 4px solid black;
 }
 
@@ -271,18 +276,17 @@ table {
 .formContainer {
   border: 4px solid black;
   margin-top: 10px;
-  margin-left: var(--main-content-margin);
-  margin-right: var(--main-content-margin);
   min-height: 25vh;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .inputGroup {
   display: grid;
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: 100px calc(100% - 100px);
+  column-gap: 10px;
   place-items: start;
-  height: clamp(24px, 5vh, 28px);
 }
 
 .formContainer input,
@@ -324,5 +328,10 @@ button {
   }
   .toDos {
     width: calc(100vw - var(--sideBarWidth));
+  }
+
+  .task,
+  .formContainer {
+    width: clamp(300px, 70%, 900px);
   }
 }
