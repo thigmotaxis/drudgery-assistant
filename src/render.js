@@ -41,9 +41,15 @@ export const renderPage = (() => {
           <div id="professional" class="category">Professional</div>
           <div id="academic" class="category">Academic</div>
       </div>
-
-      <div class="footer"></div>
   </div>`
+  );
+  const sideBar = document.querySelector(".sideBar");
+  sideBar.insertAdjacentHTML(
+    "afterend",
+    `<div class="toDos">
+    <div class="title">Unfinished Business</div>
+  </div>
+  <div class= "footer"></div>`
   );
   const footer = document.querySelector(".footer");
 
@@ -74,14 +80,6 @@ export const renderPage = (() => {
   settingsButton.setAttribute("src", settings);
   settingsButton.setAttribute("alt", "");
   toggleSettings.appendChild(settingsButton);
-
-  const sideBar = document.querySelector(".sideBar");
-  sideBar.insertAdjacentHTML(
-    "afterend",
-    `<div class="toDos">
-    <div class="title">Unfinished Business</div>
-  </div>`
-  );
 })();
 
 // END RENDERING OF STATIC ELEMENTS
