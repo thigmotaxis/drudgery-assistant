@@ -124,6 +124,12 @@ table {
 }
 /* END MEYER RESET */
 
+/* define custom variables */
+:root {
+  --main-content-margin: 4vw;
+  --sideBarWidth: 250px;
+}
+
 * {
   box-sizing: border-box;
   /* border: 1px solid red; */
@@ -137,7 +143,6 @@ table {
   gap: 12px;
   border-bottom: 2px solid black;
   padding: 12px;
-  margin-bottom: clamp(10px, 3vh, 20px);
 }
 
 .headerText {
@@ -154,14 +159,10 @@ table {
 
 .sideBar {
   display: none;
-}
-
-/* .sideBar {
-  display: flex;
   flex-direction: column;
-  min-width: 250px;
-  min-height: 85vh;
-  border-right: 1px solid black;
+  min-width: var(--sideBarWidth);
+  height: calc(100vh - 122px);
+  border-right: 2px solid black;
 }
 
 .allTasks,
@@ -213,43 +214,44 @@ table {
 
 .footerImage {
   height: 1rem;
-} */
+}
 
 /* END SIDEBAR STYLES */
 
-@media (min-width: 600px) {
-  .headerBar {
-    gap: 120px;
-    /* this value should line header text up with the edge of the sidebar on desktop layouts */
-  }
-  .headerText {
-    font-size: 3rem;
-  }
+/* BEGIN MAIN CONTENT STYLES */
+
+.title {
+  display: none;
 }
 
-/* BEGIN MAIN CONTENT STYLES */
-.title,
-.formContainer {
-  display: none;
+.toDos {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .task {
   display: grid;
-  grid-template-columns: 2fr 3fr 10fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 15fr 1fr 1fr;
   margin-top: 10px;
-  margin-left: 3vw;
-  margin-right: 3vw;
+  margin-left: var(--main-content-margin);
+  margin-right: var(--main-content-margin);
   border: 4px solid black;
 }
 
 .task > * {
   place-self: center;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .dueDate,
 .taskName,
 .taskDescription {
   justify-self: left;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .taskDescription {
@@ -260,5 +262,67 @@ table {
 .highPriority {
   border: 4px solid red;
 }
+.complete {
+  opacity: 0.5;
+  text-decoration: line-through;
+  border-color: gray;
+}
+
+.formContainer {
+  border: 4px solid black;
+  margin-top: 10px;
+  margin-left: var(--main-content-margin);
+  margin-right: var(--main-content-margin);
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  place-items: start;
+  height: clamp(24px, 5vh, 28px);
+}
+
+.formContainer input,
+textarea,
+select {
+  width: 100%;
+}
+
+.submitNewTask {
+  width: 15%;
+  margin-top: 1.25vh;
+  align-self: flex-end;
+}
+
+button {
+  border: 1px solid black;
+  background-color: cyan;
+  border-radius: 15px;
+}
 
 /* END MAIN CONTENT STYLES */
+@media (min-width: 600px) {
+  .headerBar {
+    gap: 120px;
+    /* this value should line header text up with the edge of the sidebar on desktop layouts */
+  }
+  .headerText {
+    font-size: 3rem;
+  }
+  .title {
+    display: inline;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .sideBar {
+    display: flex;
+  }
+  .toDos {
+    width: calc(100vw - var(--sideBarWidth));
+  }
+}
