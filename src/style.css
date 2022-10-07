@@ -124,6 +124,12 @@ table {
 }
 /* END MEYER RESET */
 
+/* define custom variables */
+:root {
+  --main-content-margin: 4vw;
+  --sideBarWidth: 250px;
+}
+
 * {
   box-sizing: border-box;
   /* border: 1px solid red; */
@@ -134,34 +140,32 @@ table {
 .headerBar {
   display: flex;
   align-items: center;
-  height: 15vh;
-  border-bottom: 1px solid black;
-}
-
-.logo {
-  height: 6rem;
-  padding: 10px;
+  gap: 12px;
+  border-bottom: 2px solid black;
+  padding: 12px;
 }
 
 .headerText {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 /* END HEADER STYLES */
 
 .content {
   display: flex;
-  width: 100vw;
 }
 
 /* BEGIN SIDEBAR STYLES */
 
 .sideBar {
-  display: flex;
+  position: absolute;
+  z-index: 2;
+  display: none;
   flex-direction: column;
-  width: 15vw;
-  height: 85vh;
+  min-width: var(--sideBarWidth);
+  height: calc(100vh - 182px);
   border-right: 1px solid black;
+  background-color: white;
 }
 
 .allTasks,
@@ -176,7 +180,7 @@ table {
 }
 
 .allTasks {
-  margin-top: 2vh;
+  margin-top: 6%;
 }
 
 .allTasks:hover,
@@ -197,69 +201,69 @@ table {
   padding-bottom: 5%;
 }
 
-.categories {
-  height: 40%;
-}
-
-.addTask {
-  margin-top: 10%;
-  margin-left: 10%;
-  margin-bottom: 10%;
-  width: 50%;
-}
-
-.copyright {
-  padding-left: 10%;
-  padding-top: 15%;
-  display: flex;
-  padding-bottom: 5%;
-}
-
-.footerImage {
-  height: 1rem;
-}
-
 /* END SIDEBAR STYLES */
 
 /* START MAIN CONTENT STYLES */
 
-.toDos {
-  display: flex;
-  flex-direction: column;
-  width: 70vw;
-  margin-left: 7.5vw;
-  margin-right: 7.5vw;
+.title {
+  display: none;
 }
 
-.title {
-  font-size: 2rem;
-  text-align: center;
-  padding: 5%;
+.toDos {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .task {
   display: grid;
-  grid-template-columns: 5% 10% 75% 5% 5%;
-  margin-bottom: 10px;
+  grid-template-columns: 1fr 1fr 15fr 1fr 1fr;
+}
+
+.task,
+.formContainer {
+  margin-top: 10px;
+  margin-left: var(--main-content-margin);
+  margin-right: var(--main-content-margin);
+  width: calc(100% - calc(var(--main-content-margin) * 2));
   border: 4px solid black;
+}
+
+.task > * {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.dueDate,
+.taskName,
+.taskDescription,
+.editIcon,
+.deleteIcon {
+  place-self: center;
+}
+
+.dueDate,
+.taskName,
+.taskDescription {
+  justify-self: left;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.taskDescription {
+  font-size: 0.8rem;
+  grid-column: 3/4;
 }
 
 .highPriority {
   border-color: red;
 }
 
-.radio,
-.dueDate,
-.editIcon,
-.deleteIcon {
-  place-self: center;
-}
-
-.taskName,
-.taskDescription {
-  align-self: center;
-  padding-top: 2%;
-  padding-bottom: 2%;
+.complete {
+  opacity: 0.5;
+  text-decoration: line-through;
+  border-color: gray;
 }
 
 .editIcon,
@@ -273,29 +277,20 @@ table {
   height: 2.5rem;
 }
 
-.taskDescription {
-  grid-column: 3/4;
-}
-
-.complete {
-  opacity: 0.5;
-  text-decoration: line-through;
-  border-color: gray;
-}
-
+/* START HERE AFTER COMPLETING FOOTER - MATCCH UP WITH LINE 262 IN MOCKMOBILE */
 .formContainer {
   border: 4px solid black;
-  padding: 2.5vh;
-  height: 25vh;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .inputGroup {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 100px calc(100% - 110px);
+  column-gap: 10px;
+  padding-bottom: 0.5rem;
   place-items: start;
-  height: 5vh;
 }
 
 .formContainer input,
@@ -305,13 +300,11 @@ select {
 }
 
 .submitNewTask {
-  width: 15%;
-  margin-top: 1.25vh;
+  width: clamp(50px, 15%, 300px);
   align-self: flex-end;
 }
 
 button {
-  height: 2.5vh;
   border: 1px solid black;
   background-color: cyan;
   border-radius: 15px;
@@ -322,3 +315,89 @@ button:hover {
 }
 
 /* END MAIN CONTENT STYLES */
+
+/* BEGIN FOOTER STYLES */
+
+.footer {
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  color: white;
+}
+
+.newTaskContainer {
+  display: flex;
+  align-items: center;
+}
+
+.newTaskText {
+  color: #ff6f00;
+  font-weight: bold;
+}
+
+.copyright {
+  display: none;
+}
+
+.footerButton,
+.copyright {
+  padding: 8px;
+}
+
+.copyrightText {
+  font-weight: bold;
+}
+
+.footerImage {
+  height: 1rem;
+}
+
+/* END FOOTER STYLES */
+
+@media (min-width: 600px) {
+  .headerBar {
+    gap: 120px;
+    /* this value should line header text up with the edge of the sidebar on desktop layouts */
+  }
+  .headerText {
+    font-size: 3rem;
+  }
+  .title {
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .sideBar {
+    display: flex;
+    position: static;
+  }
+  .toDos {
+    width: calc(100vw - var(--sideBarWidth));
+  }
+
+  .task,
+  .formContainer {
+    width: clamp(300px, 70%, 900px);
+  }
+
+  .footerButton,
+  .copyright {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .copyright {
+    display: flex;
+  }
+  .toggleSettings {
+    display: none;
+  }
+}

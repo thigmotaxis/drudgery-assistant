@@ -302,7 +302,7 @@ export const modifyDOM = (() => {
           <label class="formLabel" for="ntDesc">Task Description:</label>
           <textarea class="formInput" id="ntDesc" placeholder="Optional description"></textarea>
         </div>
-          <button class="submitNewTask">Add Task</button>
+          <button class="submitNewTask">Submit</button>
         </div>`
     );
     const formButton = document.querySelector(".submitNewTask");
