@@ -361,26 +361,26 @@ export const modifyDOM = (() => {
 
   // START FOOTER HANDLER LOGIC
   // ASSIGN FOOTER HANDLER
-  // let toggled = false;
+  let toggled = false;
   const toggleSidebar = () => {
-    // const sideBar = document.querySelector(".sideBar");
-    // const tasks = document.querySelectorAll(".task");
-    // if (toggled === false) {
-    //   for (let i = 0; i < tasks.length; i++) {
-    //     tasks[i].classList.add("muted");
-    //   }
-    //   sideBar.classList.add("toggledOn");
-    //   toggled = true;
-    //   console.log(toggled);
-    // } else {
-    //   for (let i = 0; i < tasks.length; i++) {
-    //     tasks[i].classList.remove("muted");
-    //   }
-    //   sideBar.classList.remove("toggledOn");
-    //   toggled = false;
-    //   console.log(toggled);
-    // }
-    alert("this feature is broken, will be fixed in next release");
+    const sideBar = document.querySelector(".sideBar");
+    const tasks = document.querySelectorAll(".task");
+    if (toggled === false) {
+      for (let i = 0; i < tasks.length; i++) {
+        tasks[i].classList.add("muted");
+      }
+      sideBar.classList.add("toggledOn");
+      toggled = true;
+      console.log(toggled);
+    } else {
+      for (let i = 0; i < tasks.length; i++) {
+        tasks[i].classList.remove("muted");
+      }
+      sideBar.classList.remove("toggledOn");
+      toggled = false;
+      console.log(toggled);
+    }
+    // alert("this feature is broken, will be fixed in next release");
   };
 
   (() => {
