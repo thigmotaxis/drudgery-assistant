@@ -2,9 +2,9 @@ import { storage } from "./taskStorage.js";
 import { format } from "date-fns";
 import createElement from "./createComponents.js";
 import logoImage from "./images/logo-120w.png";
-import newTaskImg from "./images/addTask-36w.png";
+import newTaskImg from "./images/addTask-48w.png";
 import copyrightSymbol from "./images/copyright-24w.png";
-import settings from "./images/settings-36w.png";
+import settings from "./images/settings-48w.png";
 import editIcon from "./images/edit.png";
 import deleteIcon from "./images/delete.png";
 
@@ -309,7 +309,7 @@ export const modifyDOM = (() => {
     formButton.addEventListener("click", handleNewTaskSubmission);
   };
 
-  const addTaskBtn = document.querySelector(".addTask");
+  const addTaskBtn = document.querySelector(".newTaskContainer");
   addTaskBtn.addEventListener("click", renderTaskForm);
   // END NEW TASK FORM LOGIC
 
