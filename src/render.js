@@ -74,12 +74,11 @@ export const renderPage = (() => {
   copyrightText.innerHTML = "2022 Abe Industries";
   copyright.appendChild(copyrightText);
 
-  const toggleSettings = createElement("div", ["toggleSettings"], footer);
   const settingsButton = new Image();
-  settingsButton.classList.add("footerButton");
+  settingsButton.classList.add("toggleSettings", "footerButton");
   settingsButton.setAttribute("src", settings);
   settingsButton.setAttribute("alt", "");
-  toggleSettings.appendChild(settingsButton);
+  footer.appendChild(settingsButton);
 })();
 
 // END RENDERING OF STATIC ELEMENTS
@@ -359,6 +358,35 @@ export const modifyDOM = (() => {
     });
   })();
   // END SIDEBAR HANDLER LOGIC
+
+  // START FOOTER HANDLER LOGIC
+  // ASSIGN FOOTER HANDLER
+  // let toggled = false;
+  const toggleSidebar = () => {
+    // const sideBar = document.querySelector(".sideBar");
+    // const tasks = document.querySelectorAll(".task");
+    // if (toggled === false) {
+    //   for (let i = 0; i < tasks.length; i++) {
+    //     tasks[i].classList.add("muted");
+    //   }
+    //   sideBar.classList.add("toggledOn");
+    //   toggled = true;
+    //   console.log(toggled);
+    // } else {
+    //   for (let i = 0; i < tasks.length; i++) {
+    //     tasks[i].classList.remove("muted");
+    //   }
+    //   sideBar.classList.remove("toggledOn");
+    //   toggled = false;
+    //   console.log(toggled);
+    // }
+    alert("this feature is broken, will be fixed in next release");
+  };
+
+  (() => {
+    const settingsButton = document.querySelector(".toggleSettings");
+    settingsButton.addEventListener("click", toggleSidebar);
+  })();
 
   return { clearTasks, renderTasks };
 })();
