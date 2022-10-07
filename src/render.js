@@ -154,6 +154,9 @@ export const modifyDOM = (() => {
       (task) => task.dataIndex == domDataIndex
     );
     taskDescription.innerHTML = taskList[objectDataIndex].description;
+    if (taskDescription.innerHTML === "") {
+      taskDescription.setAttribute("style", "display: none");
+    }
   };
 
   const shrinkTask = (e) => {
