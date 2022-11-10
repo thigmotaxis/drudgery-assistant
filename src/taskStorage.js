@@ -16,10 +16,10 @@ export const storage = (() => {
     };
   };
 
-  // RETRIEVE currentTaskList from SESSION STORAGE
-  const getTaskListFromSession = () => {
+  // RETRIEVE currentTaskList from LOCAL STORAGE
+  const getTaskListFromLocal = () => {
     let currentTaskList = JSON.parse(
-      window.sessionStorage.getItem("currentTaskList")
+      window.localStorage.getItem("currentTaskList")
     );
     if (!currentTaskList) return [];
     return currentTaskList;
@@ -27,8 +27,8 @@ export const storage = (() => {
 
   let taskList = [];
   // CHECK STORAGE FOR taskList AND UPDATE IF FOUND
-  if (window.sessionStorage.getItem("currentTaskList")) {
-    taskList = getTaskListFromSession();
+  if (window.localStorage.getItem("currentTaskList")) {
+    taskList = getTaskListFromLocal();
   }
 
   // SORTS taskList BY dueDate AND SECONDARILY BY priority
@@ -41,9 +41,9 @@ export const storage = (() => {
     return chronoTaskList;
   };
 
-  const storeTaskListInSession = (taskList) => {
+  const storeTaskListInLocal = (taskList) => {
     const chronoTaskList = sortTaskList(taskList);
-    window.sessionStorage.setItem(
+    window.localStorage.setItem(
       "currentTaskList",
       JSON.stringify(chronoTaskList)
     );
@@ -65,7 +65,7 @@ export const storage = (() => {
     for (let i = 0; i < taskList.length; i++) {
       taskList[i].dataIndex = i;
     }
-    storeTaskListInSession(taskList);
+    storeTaskListInLocal(taskList);
   };
 
   const retrieveTaskObject = (domIndex) => {
@@ -82,7 +82,7 @@ export const storage = (() => {
     if (taskList[objectDataIndex].complete !== true) {
       taskList[objectDataIndex].complete = true;
     } else taskList[objectDataIndex].complete = false;
-    storeTaskListInSession(taskList);
+    storeTaskListInLocal(taskList);
   };
 
   const editTask = (objectToEdit) => {
@@ -91,7 +91,7 @@ export const storage = (() => {
     objectToEdit.priority = document.getElementById("ntPriority").value;
     objectToEdit.category = document.getElementById("ntCategory").value;
     objectToEdit.description = document.getElementById("ntDesc").value;
-    storeTaskListInSession(taskList);
+    storeTaskListInLocal(taskList);
   };
 
   const removeTask = (domIndex) => {
@@ -99,7 +99,7 @@ export const storage = (() => {
       (task) => task.dataIndex === parseInt(domIndex)
     );
     taskList.splice(objectDataIndex, 1);
-    storeTaskListInSession(taskList);
+    storeTaskListInLocal(taskList);
   };
 
   const sortTasksByAttribute = (attribute) => {
@@ -145,7 +145,7 @@ export const storage = (() => {
     toggleTaskComplete,
     editTask,
     removeTask,
-    getTaskListFromSession,
+    getTaskListFromLocal,
     sortTasksByAttribute,
     sortTasksByDate,
     sortTasksByCategory,

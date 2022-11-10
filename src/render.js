@@ -127,7 +127,7 @@ export const modifyDOM = (() => {
       form.remove(), { once: true };
     });
     addTaskButton.addEventListener("click", () =>
-      renderTasks(storage.getTaskListFromSession())
+      renderTasks(storage.getTaskListFromLocal())
     ),
       { once: true };
   };
@@ -149,7 +149,7 @@ export const modifyDOM = (() => {
       taskElement
     );
     const domDataIndex = taskElement.getAttribute("data-index");
-    const taskList = storage.getTaskListFromSession();
+    const taskList = storage.getTaskListFromLocal();
     const objectDataIndex = taskList.findIndex(
       (task) => task.dataIndex == domDataIndex
     );
@@ -172,7 +172,7 @@ export const modifyDOM = (() => {
     return displayDueDate;
   };
 
-  const renderTasks = (taskList = storage.getTaskListFromSession()) => {
+  const renderTasks = (taskList = storage.getTaskListFromLocal()) => {
     if (document.querySelector(".formContainer")) return;
     const toDo = document.querySelector(".toDos");
     for (let i = 0; i < taskList.length; i++) {
